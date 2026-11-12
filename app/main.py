@@ -362,6 +362,15 @@ async def extract_text_from_image(file: UploadFile = File(...)):
         )
 
 
+@app.get("/")
+def read_root():
+    return {
+        "status": "online",
+        "service": "PrivaGate & API Sentinel Backend",
+        "docs": "/docs",
+    }
+
+
 @app.get("/api/v1/health")
 def health_check():
     return {

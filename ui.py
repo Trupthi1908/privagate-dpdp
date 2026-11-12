@@ -554,13 +554,26 @@ def get_gateway_engines():
 
 engines = get_gateway_engines()
 
-# FastAPI Backend Configuration
-API_BASE_URL = "http://127.0.0.1:8000"
-API_TIMEOUT = 15.0  # seconds
+# Production Render Backend Configuration
+BACKEND_URL = os.getenv("BACKEND_URL", "https://privagate-backend.onrender.com/api/v1")
+try:
+    if hasattr(st, "secrets") and "BACKEND_URL" in st.secrets:
+        BACKEND_URL = st.secrets["BACKEND_URL"]
+except Exception:
+    pass
+
+# Clean base host without trailing /api/v1 for unified endpoint URL construction
+_raw_backend = BACKEND_URL.rstrip("/")
+if _raw_backend.endswith("/api/v1"):
+    API_BASE_URL = _raw_backend[:-7]
+else:
+    API_BASE_URL = _raw_backend
+
+API_TIMEOUT = 30.0  # seconds (Render free tier instances can take up to 20-30s during cold starts)
 
 
 class BackendClient:
-    """HTTP Client connecting Streamlit to the FastAPI Backend (http://127.0.0.1:8000).
+    """HTTP Client connecting Streamlit to the FastAPI Backend (API_BASE_URL).
 
     Sends real HTTP REST requests for all gateway, chat, evaluation, audit, and DSR operations.
     Includes graceful error handling and local fallback if the backend server is offline.
@@ -1457,7 +1470,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
             if not payload_text:
                 st.warning("⚠️ **Document text is empty.** Please upload a real document file (PDF, TXT, DOCX) above before running the gateway.")
             else:
-                with st.spinner("Processing document through 4-stage DPDP Privacy Gateway (FastAPI http://127.0.0.1:8000)..."):
+                with st.spinner(f"Processing document through 4-stage DPDP Privacy Gateway (FastAPI {API_BASE_URL})..."):
                     st.session_state["tab1_results"] = BackendClient.process_gateway(
                         text=payload_text,
                         task=task_code,
@@ -1475,10 +1488,10 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                 st.warning(f"⚠️ **FastAPI Backend Server Offline:** Could not reach `{API_BASE_URL}`. Processed securely via local fallback pipeline.")
             elif res.get("backend_used") == "http":
                 st.markdown(
-                    """
+                    f"""
                     <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 7px 14px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
                       <span style="color: #166534; font-size: 0.82rem; font-weight: 600;">
-                        🌐 <b>FastAPI HTTP Live REST:</b> <code>POST http://127.0.0.1:8000/api/v1/gateway/process</code>
+                        🌐 <b>FastAPI HTTP Live REST:</b> <code>POST {API_BASE_URL}/api/v1/gateway/process</code>
                       </span>
                       <span style="background: #DCFCE7; color: #15803D; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 9999px; border: 1px solid #86EFAC;">
                         SQLite Audit Logged
@@ -1970,7 +1983,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
 
             # Execute 4-Stage Privacy Pipeline via FastAPI Secure Chat Backend
             with st.chat_message("assistant"):
-                with st.spinner("Processing query & document audit through 4-stage DPDP Privacy Gateway (FastAPI http://127.0.0.1:8000/api/v1/secure-chat)..."):
+                with st.spinner(f"Processing query & document audit through 4-stage DPDP Privacy Gateway (FastAPI {API_BASE_URL}/api/v1/secure-chat)..."):
                     history_dicts = [
                         {"role": m["role"], "content": m["content"]}
                         for m in st.session_state.messages[:-1]
@@ -2056,7 +2069,7 @@ elif selected_view == "📊 2. 50-Doc Benchmark":
         run_eval_btn = st.button("🚀 Run Full 50-Doc Benchmark Suite", type="primary")
 
     if run_eval_btn:
-        with st.spinner("Executing 50-document evaluation benchmark via FastAPI backend (POST http://127.0.0.1:8000/api/v1/eval/run)..."):
+        with st.spinner(f"Executing 50-document evaluation benchmark via FastAPI backend (POST {API_BASE_URL}/api/v1/eval/run)..."):
             report_data = BackendClient.trigger_eval()
             st.success("Benchmark completed via FastAPI backend and saved to eval/latest_report.json!")
 
@@ -2208,7 +2221,7 @@ elif selected_view == "📜 3. DPDP Audit & DSR":
             dsr_btn = st.button("🚨 Purge & Erase Records", type="secondary", use_container_width=True)
 
     if dsr_btn and dsr_target:
-        with st.spinner("Submitting Section 12 DSR Erasure to FastAPI (POST http://127.0.0.1:8000/api/v1/rights/erase)..."):
+        with st.spinner(f"Submitting Section 12 DSR Erasure to FastAPI (POST {API_BASE_URL}/api/v1/rights/erase)..."):
             erasure_res = BackendClient.erase_dsr(dsr_target, reason=dsr_reason)
         st.success(
             f"✅ **Section 12 Erasure Executed Successfully!**\n\n"
@@ -2368,7 +2381,7 @@ elif selected_view == "⚡ 4. API Sentinel SOC":
         with sim_col2:
             st.markdown("#### Sentinel Real-Time Reaction")
             if sim_btn and attack_text:
-                with st.spinner("Transmitting attack payload to FastAPI Gateway (http://127.0.0.1:8000)..."):
+                with st.spinner(f"Transmitting attack payload to FastAPI Gateway ({API_BASE_URL})..."):
                     res = BackendClient.process_gateway(text=attack_text, task="summarize", purpose="general")
                 if res.get("sentinel_status") == "BLOCKED":
                     st.error(

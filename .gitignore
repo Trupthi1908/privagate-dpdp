@@ -1,14 +1,19 @@
-# Virtual Environment
-.venv/
-venv/
-ENV/
-env/
-
-# Python Cache
+# Byte-compiled / optimized / cache files
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
 
 # Databases & local state
 *.db
@@ -17,16 +22,29 @@ __pycache__/
 audit_logs.db
 privagate.db
 
-# Secrets & Environment
+# Secrets & Environment variables
 .env
+*.env
 *.env.local
+.streamlit/secrets.toml
 
-# IDE & Editor
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE & Editor files
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+tempCodeRunnerFile.py
 
-# Temporary test scripts
+# Temporary & scratch files
 scratch/
-

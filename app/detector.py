@@ -4,9 +4,24 @@ from __future__ import annotations
 
 import logging
 import re
+import subprocess
+import sys
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 logger = logging.getLogger(__name__)
+
+
+def ensure_spacy_model(model_name: str = "en_core_web_sm") -> None:
+    """Ensures that the specified spaCy model is downloaded programmatically at runtime."""
+    try:
+        import spacy
+        try:
+            spacy.load(model_name)
+        except Exception:
+            logger.info(f"Downloading spaCy model '{model_name}' programmatically...")
+            subprocess.run([sys.executable, "-m", "spacy", "download", model_name], check=True)
+    except Exception as e:
+        logger.warning(f"Unable to auto-download spaCy model '{model_name}': {e}")
 
 # Presidio Analyzer and NlpEngineProvider
 PRESIDIO_AVAILABLE = False
@@ -108,6 +123,7 @@ class PIIDetectionEngine:
     def __init__(self):
         self.analyzer: Optional[Any] = None
         self.nlp: Optional[Any] = None
+        ensure_spacy_model("en_core_web_sm")
         self._init_presidio()
         self._init_spacy()
 

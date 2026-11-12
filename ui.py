@@ -19,6 +19,8 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import subprocess
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -29,6 +31,21 @@ import plotly.express as px
 import plotly.graph_objects as go
 import requests
 import streamlit as st
+
+
+def ensure_spacy_model(model_name: str = "en_core_web_sm") -> None:
+    """Ensures spaCy model is downloaded programmatically at runtime on Streamlit Cloud."""
+    try:
+        import spacy
+        try:
+            spacy.load(model_name)
+        except Exception:
+            subprocess.run([sys.executable, "-m", "spacy", "download", model_name], check=True)
+    except Exception:
+        pass
+
+
+ensure_spacy_model("en_core_web_sm")
 
 from app.database import (
     erase_entity_records,

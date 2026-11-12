@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import io
 import os
+import subprocess
+import sys
 import time
 from typing import Any, Dict, List, Optional
 import requests
@@ -14,6 +16,21 @@ from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+def ensure_spacy_model(model_name: str = "en_core_web_sm") -> None:
+    """Ensures spaCy model is downloaded programmatically at runtime."""
+    try:
+        import spacy
+        try:
+            spacy.load(model_name)
+        except Exception:
+            subprocess.run([sys.executable, "-m", "spacy", "download", model_name], check=True)
+    except Exception:
+        pass
+
+
+ensure_spacy_model("en_core_web_sm")
 
 # Hugging Face API Configuration
 HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN", "")

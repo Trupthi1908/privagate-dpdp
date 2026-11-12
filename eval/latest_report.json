@@ -1,0 +1,161 @@
+{
+  "timestamp": "2026-11-12T17:33:25Z",
+  "total_documents_evaluated": 50,
+  "outbound_raw_pii_leakage": 0,
+  "leakage_zero_verified": true,
+  "overall_precision": 100.0,
+  "overall_recall": 100.0,
+  "overall_f1_score": 100.0,
+  "average_reinsertion_accuracy": 100.0,
+  "average_gateway_latency_ms": 61.05,
+  "per_entity_metrics": {
+    "AADHAAR": {
+      "true_positives": 45,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0
+    },
+    "PAN": {
+      "true_positives": 48,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0
+    },
+    "GSTIN": {
+      "true_positives": 12,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0
+    },
+    "VOTER_ID": {
+      "true_positives": 23,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0
+    },
+    "PASSPORT": {
+      "true_positives": 22,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0
+    },
+    "PERSON": {
+      "true_positives": 113,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0
+    },
+    "ADDRESS": {
+      "true_positives": 50,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0
+    }
+  },
+  "sample_document_results": [
+    {
+      "doc_id": "DOC_001",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 109.95
+    },
+    {
+      "doc_id": "DOC_002",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 107.4
+    },
+    {
+      "doc_id": "DOC_003",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 60.76
+    },
+    {
+      "doc_id": "DOC_004",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 77.8
+    },
+    {
+      "doc_id": "DOC_005",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 52.19
+    },
+    {
+      "doc_id": "DOC_006",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 60.0
+    },
+    {
+      "doc_id": "DOC_007",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 72.71
+    },
+    {
+      "doc_id": "DOC_008",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 59.16
+    },
+    {
+      "doc_id": "DOC_009",
+      "category": "loan_application",
+      "detected_count": 6,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 51.23
+    },
+    {
+      "doc_id": "DOC_010",
+      "category": "loan_application",
+      "detected_count": 7,
+      "ground_truth_count": 6,
+      "leakage": 0,
+      "reinsertion_accuracy": 100.0,
+      "latency_ms": 67.8
+    }
+  ]
+}

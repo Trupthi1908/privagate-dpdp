@@ -1,0 +1,2280 @@
+[
+  {
+    "id": "DOC_001",
+    "category": "loan_application",
+    "title": "Loan Application - Pooja Sharma",
+    "text": "RETAIL ASSET FINANCE - PERSONAL LOAN APPLICATION\nApplication Ref: LOAN-IN-133326\nApplicant Name: Pooja Sharma\nResidential Address: Flat No 131, 4th Cross, 4th Main Road, JP Nagar, Bengaluru - 560078\nIdentity Verification:\n- Aadhaar Number: 2838 6379 4026\n- Permanent Account Number (PAN): XIHHE1819N\n- Passport Number: G6116156\nLoan Request: Rs. 21,00,000 for home renovation tenure 36 months.\nEmployer: Tata Consultancy Services, Bengaluru.\nDeclaration: I, Pooja Sharma, hereby confirm that all submitted DPDP consent data is accurate.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Pooja Sharma",
+        "start": 97,
+        "end": 109
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 131, 4th Cross, 4th Main Road, JP Nagar, Bengaluru - 560078",
+        "start": 131,
+        "end": 198
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "2838 6379 4026",
+        "start": 240,
+        "end": 254
+      },
+      {
+        "entity_type": "PAN",
+        "text": "XIHHE1819N",
+        "start": 289,
+        "end": 299
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "G6116156",
+        "start": 319,
+        "end": 327
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Pooja Sharma",
+        "start": 391,
+        "end": 403
+      }
+    ]
+  },
+  {
+    "id": "DOC_002",
+    "category": "loan_application",
+    "title": "Loan Application - Shilpa Agarwal",
+    "text": "COMMERCIAL BUSINESS CREDIT EVALUATION MEMORANDUM\nApplicant Entity: Apex Technologies Private Limited\nKey Managing Director: Shilpa Agarwal\nCorporate PAN: GWCBV3413D\nRegistered GSTIN: 25GWCBV3413D5Z9\nDirector Aadhaar: 4553 4192 8327\nRegistered Office: Flat No 385, 11th Cross, 6th Main Road, Sector 62, Noida - 201309\nSanction Amount: INR 11,00,000 working capital credit facility.\nPrimary Contact: Shilpa Agarwal (authorized signatory).",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Agarwal",
+        "start": 124,
+        "end": 138
+      },
+      {
+        "entity_type": "PAN",
+        "text": "GWCBV3413D",
+        "start": 154,
+        "end": 164
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "25GWCBV3413D5Z9",
+        "start": 183,
+        "end": 198
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "4553 4192 8327",
+        "start": 204,
+        "end": 218
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 385, 11th Cross, 6th Main Road, Sector 62, Noida - 201309",
+        "start": 233,
+        "end": 298
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Agarwal",
+        "start": 323,
+        "end": 337
+      }
+    ]
+  },
+  {
+    "id": "DOC_003",
+    "category": "loan_application",
+    "title": "Loan Application - Divya Shetty",
+    "text": "SECURED HOUSING LOAN SANCTION NOTE\nPrimary Borrower: Divya Shetty\nCurrent Address: Flat No 622, 2th Cross, 1th Main Road, DLF Phase 2, Gurugram - 122002\nKYC Identifiers:\n1. Aadhaar Card: 3226 9166 9784\n2. Income Tax PAN: RRIXS6965H\n3. Voter ID Card: XXI8281489\nProperty Valuation: INR 85,00,000 at Whitefield.\nDisbursement requested by Divya Shetty following title deed verification.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Divya Shetty",
+        "start": 53,
+        "end": 65
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 622, 2th Cross, 1th Main Road, DLF Phase 2, Gurugram - 122002",
+        "start": 83,
+        "end": 152
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "3226 9166 9784",
+        "start": 187,
+        "end": 201
+      },
+      {
+        "entity_type": "PAN",
+        "text": "RRIXS6965H",
+        "start": 221,
+        "end": 231
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "XXI8281489",
+        "start": 250,
+        "end": 260
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Divya Shetty",
+        "start": 266,
+        "end": 278
+      }
+    ]
+  },
+  {
+    "id": "DOC_004",
+    "category": "loan_application",
+    "title": "Loan Application - Kavita Singh",
+    "text": "RETAIL ASSET FINANCE - PERSONAL LOAN APPLICATION\nApplication Ref: LOAN-IN-217301\nApplicant Name: Kavita Singh\nResidential Address: Flat No 472, 4th Cross, 1th Main Road, Madhapur, Hyderabad - 500081\nIdentity Verification:\n- Aadhaar Number: 5911 7182 2782\n- Permanent Account Number (PAN): YFRYQ0957A\n- Passport Number: G9346579\nLoan Request: Rs. 40,00,000 for home renovation tenure 36 months.\nEmployer: Tata Consultancy Services, Bengaluru.\nDeclaration: I, Kavita Singh, hereby confirm that all submitted DPDP consent data is accurate.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Kavita Singh",
+        "start": 97,
+        "end": 109
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 472, 4th Cross, 1th Main Road, Madhapur, Hyderabad - 500081",
+        "start": 131,
+        "end": 198
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "5911 7182 2782",
+        "start": 240,
+        "end": 254
+      },
+      {
+        "entity_type": "PAN",
+        "text": "YFRYQ0957A",
+        "start": 289,
+        "end": 299
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "G9346579",
+        "start": 319,
+        "end": 327
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Kavita Singh",
+        "start": 391,
+        "end": 403
+      }
+    ]
+  },
+  {
+    "id": "DOC_005",
+    "category": "loan_application",
+    "title": "Loan Application - Manoj Sharma",
+    "text": "COMMERCIAL BUSINESS CREDIT EVALUATION MEMORANDUM\nApplicant Entity: Apex Technologies Private Limited\nKey Managing Director: Manoj Sharma\nCorporate PAN: CWUBH1051Q\nRegistered GSTIN: 04CWUBH1051Q2ZD\nDirector Aadhaar: 9376 3116 5667\nRegistered Office: Flat No 386, 4th Cross, 3th Main Road, DLF Phase 2, Gurugram - 122002\nSanction Amount: INR 6,00,000 working capital credit facility.\nPrimary Contact: Manoj Sharma (authorized signatory).",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Manoj Sharma",
+        "start": 124,
+        "end": 136
+      },
+      {
+        "entity_type": "PAN",
+        "text": "CWUBH1051Q",
+        "start": 152,
+        "end": 162
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "04CWUBH1051Q2ZD",
+        "start": 181,
+        "end": 196
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "9376 3116 5667",
+        "start": 202,
+        "end": 216
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 386, 4th Cross, 3th Main Road, DLF Phase 2, Gurugram - 122002",
+        "start": 231,
+        "end": 300
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Manoj Sharma",
+        "start": 321,
+        "end": 333
+      }
+    ]
+  },
+  {
+    "id": "DOC_006",
+    "category": "loan_application",
+    "title": "Loan Application - Rahul Gupta",
+    "text": "SECURED HOUSING LOAN SANCTION NOTE\nPrimary Borrower: Rahul Gupta\nCurrent Address: Flat No 103, 5th Cross, 8th Main Road, Viman Nagar, Pune - 411014\nKYC Identifiers:\n1. Aadhaar Card: 6687 2343 0980\n2. Income Tax PAN: YHFNP7360F\n3. Voter ID Card: FCT1361939\nProperty Valuation: INR 85,00,000 at Whitefield.\nDisbursement requested by Rahul Gupta following title deed verification.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Rahul Gupta",
+        "start": 53,
+        "end": 64
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 103, 5th Cross, 8th Main Road, Viman Nagar, Pune - 411014",
+        "start": 82,
+        "end": 147
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6687 2343 0980",
+        "start": 182,
+        "end": 196
+      },
+      {
+        "entity_type": "PAN",
+        "text": "YHFNP7360F",
+        "start": 216,
+        "end": 226
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "FCT1361939",
+        "start": 245,
+        "end": 255
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Rahul Gupta",
+        "start": 265,
+        "end": 276
+      }
+    ]
+  },
+  {
+    "id": "DOC_007",
+    "category": "loan_application",
+    "title": "Loan Application - Amit Chopra",
+    "text": "RETAIL ASSET FINANCE - PERSONAL LOAN APPLICATION\nApplication Ref: LOAN-IN-850981\nApplicant Name: Amit Chopra\nResidential Address: Flat No 422, 5th Cross, 7th Main Road, Connaught Place, New Delhi - 110001\nIdentity Verification:\n- Aadhaar Number: 4475 1079 9118\n- Permanent Account Number (PAN): CNVSS8543V\n- Passport Number: E6135428\nLoan Request: Rs. 19,00,000 for home renovation tenure 36 months.\nEmployer: Tata Consultancy Services, Bengaluru.\nDeclaration: I, Amit Chopra, hereby confirm that all submitted DPDP consent data is accurate.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Amit Chopra",
+        "start": 97,
+        "end": 108
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 422, 5th Cross, 7th Main Road, Connaught Place, New Delhi - 110001",
+        "start": 130,
+        "end": 204
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "4475 1079 9118",
+        "start": 246,
+        "end": 260
+      },
+      {
+        "entity_type": "PAN",
+        "text": "CNVSS8543V",
+        "start": 295,
+        "end": 305
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "E6135428",
+        "start": 325,
+        "end": 333
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Amit Chopra",
+        "start": 390,
+        "end": 401
+      }
+    ]
+  },
+  {
+    "id": "DOC_008",
+    "category": "loan_application",
+    "title": "Loan Application - Pooja Patel",
+    "text": "COMMERCIAL BUSINESS CREDIT EVALUATION MEMORANDUM\nApplicant Entity: Apex Technologies Private Limited\nKey Managing Director: Pooja Patel\nCorporate PAN: XREIJ9353V\nRegistered GSTIN: 01XREIJ9353V2ZE\nDirector Aadhaar: 3640 0524 2786\nRegistered Office: Flat No 371, 5th Cross, 1th Main Road, DLF Phase 2, Gurugram - 122002\nSanction Amount: INR 25,00,000 working capital credit facility.\nPrimary Contact: Pooja Patel (authorized signatory).",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Pooja Patel",
+        "start": 124,
+        "end": 135
+      },
+      {
+        "entity_type": "PAN",
+        "text": "XREIJ9353V",
+        "start": 151,
+        "end": 161
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "01XREIJ9353V2ZE",
+        "start": 180,
+        "end": 195
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "3640 0524 2786",
+        "start": 201,
+        "end": 215
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 371, 5th Cross, 1th Main Road, DLF Phase 2, Gurugram - 122002",
+        "start": 230,
+        "end": 299
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Pooja Patel",
+        "start": 320,
+        "end": 331
+      }
+    ]
+  },
+  {
+    "id": "DOC_009",
+    "category": "loan_application",
+    "title": "Loan Application - Alok Chopra",
+    "text": "SECURED HOUSING LOAN SANCTION NOTE\nPrimary Borrower: Alok Chopra\nCurrent Address: Flat No 902, 13th Cross, 4th Main Road, T Nagar, Chennai - 600017\nKYC Identifiers:\n1. Aadhaar Card: 6216 0733 7543\n2. Income Tax PAN: XEHFZ2602X\n3. Voter ID Card: VRK0142940\nProperty Valuation: INR 85,00,000 at Whitefield.\nDisbursement requested by Alok Chopra following title deed verification.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Alok Chopra",
+        "start": 53,
+        "end": 64
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 902, 13th Cross, 4th Main Road, T Nagar, Chennai - 600017",
+        "start": 82,
+        "end": 147
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6216 0733 7543",
+        "start": 182,
+        "end": 196
+      },
+      {
+        "entity_type": "PAN",
+        "text": "XEHFZ2602X",
+        "start": 216,
+        "end": 226
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "VRK0142940",
+        "start": 245,
+        "end": 255
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Alok Chopra",
+        "start": 265,
+        "end": 276
+      }
+    ]
+  },
+  {
+    "id": "DOC_010",
+    "category": "loan_application",
+    "title": "Loan Application - Nandini Singh",
+    "text": "RETAIL ASSET FINANCE - PERSONAL LOAN APPLICATION\nApplication Ref: LOAN-IN-367095\nApplicant Name: Nandini Singh\nResidential Address: Flat No 146, 1th Cross, 4th Main Road, T Nagar, Chennai - 600017\nIdentity Verification:\n- Aadhaar Number: 7615 9514 8465\n- Permanent Account Number (PAN): XZKNT8169G\n- Passport Number: E4662995\nLoan Request: Rs. 32,00,000 for home renovation tenure 36 months.\nEmployer: Tata Consultancy Services, Bengaluru.\nDeclaration: I, Nandini Singh, hereby confirm that all submitted DPDP consent data is accurate.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Nandini Singh",
+        "start": 97,
+        "end": 110
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 146, 1th Cross, 4th Main Road, T Nagar, Chennai - 600017",
+        "start": 132,
+        "end": 196
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "7615 9514 8465",
+        "start": 238,
+        "end": 252
+      },
+      {
+        "entity_type": "PAN",
+        "text": "XZKNT8169G",
+        "start": 287,
+        "end": 297
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "E4662995",
+        "start": 317,
+        "end": 325
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Nandini Singh",
+        "start": 392,
+        "end": 405
+      }
+    ]
+  },
+  {
+    "id": "DOC_011",
+    "category": "loan_application",
+    "title": "Loan Application - Harish Hegde",
+    "text": "COMMERCIAL BUSINESS CREDIT EVALUATION MEMORANDUM\nApplicant Entity: Apex Technologies Private Limited\nKey Managing Director: Harish Hegde\nCorporate PAN: VGQPZ2148V\nRegistered GSTIN: 13VGQPZ2148V7Z5\nDirector Aadhaar: 6332 0037 9176\nRegistered Office: Flat No 735, 2th Cross, 4th Main Road, Banjara Hills, Hyderabad - 500034\nSanction Amount: INR 32,00,000 working capital credit facility.\nPrimary Contact: Harish Hegde (authorized signatory).",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Harish Hegde",
+        "start": 124,
+        "end": 136
+      },
+      {
+        "entity_type": "PAN",
+        "text": "VGQPZ2148V",
+        "start": 152,
+        "end": 162
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "13VGQPZ2148V7Z5",
+        "start": 181,
+        "end": 196
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6332 0037 9176",
+        "start": 202,
+        "end": 216
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 735, 2th Cross, 4th Main Road, Banjara Hills, Hyderabad - 500034",
+        "start": 231,
+        "end": 303
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Harish Hegde",
+        "start": 321,
+        "end": 333
+      }
+    ]
+  },
+  {
+    "id": "DOC_012",
+    "category": "loan_application",
+    "title": "Loan Application - Gaurav Hegde",
+    "text": "SECURED HOUSING LOAN SANCTION NOTE\nPrimary Borrower: Gaurav Hegde\nCurrent Address: Flat No 354, 13th Cross, 8th Main Road, Dwarka Sector 10, New Delhi - 110075\nKYC Identifiers:\n1. Aadhaar Card: 5471 4345 5812\n2. Income Tax PAN: TXQNR7277I\n3. Voter ID Card: ONB3669096\nProperty Valuation: INR 85,00,000 at Whitefield.\nDisbursement requested by Gaurav Hegde following title deed verification.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Gaurav Hegde",
+        "start": 53,
+        "end": 65
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 354, 13th Cross, 8th Main Road, Dwarka Sector 10, New Delhi - 110075",
+        "start": 83,
+        "end": 159
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "5471 4345 5812",
+        "start": 194,
+        "end": 208
+      },
+      {
+        "entity_type": "PAN",
+        "text": "TXQNR7277I",
+        "start": 228,
+        "end": 238
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "ONB3669096",
+        "start": 257,
+        "end": 267
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Gaurav Hegde",
+        "start": 266,
+        "end": 278
+      }
+    ]
+  },
+  {
+    "id": "DOC_013",
+    "category": "loan_application",
+    "title": "Loan Application - Rahul Singh",
+    "text": "RETAIL ASSET FINANCE - PERSONAL LOAN APPLICATION\nApplication Ref: LOAN-IN-386193\nApplicant Name: Rahul Singh\nResidential Address: Flat No 547, 1th Cross, 7th Main Road, DLF Phase 2, Gurugram - 122002\nIdentity Verification:\n- Aadhaar Number: 7627 2980 6990\n- Permanent Account Number (PAN): JYMNR8937H\n- Passport Number: O3046538\nLoan Request: Rs. 37,00,000 for home renovation tenure 36 months.\nEmployer: Tata Consultancy Services, Bengaluru.\nDeclaration: I, Rahul Singh, hereby confirm that all submitted DPDP consent data is accurate.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Rahul Singh",
+        "start": 97,
+        "end": 108
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 547, 1th Cross, 7th Main Road, DLF Phase 2, Gurugram - 122002",
+        "start": 130,
+        "end": 199
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "7627 2980 6990",
+        "start": 241,
+        "end": 255
+      },
+      {
+        "entity_type": "PAN",
+        "text": "JYMNR8937H",
+        "start": 290,
+        "end": 300
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "O3046538",
+        "start": 320,
+        "end": 328
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Rahul Singh",
+        "start": 390,
+        "end": 401
+      }
+    ]
+  },
+  {
+    "id": "DOC_014",
+    "category": "loan_application",
+    "title": "Loan Application - Sneha Singh",
+    "text": "COMMERCIAL BUSINESS CREDIT EVALUATION MEMORANDUM\nApplicant Entity: Apex Technologies Private Limited\nKey Managing Director: Sneha Singh\nCorporate PAN: HUCYU0033A\nRegistered GSTIN: 07HUCYU0033A1ZT\nDirector Aadhaar: 3937 4529 9124\nRegistered Office: Flat No 257, 3th Cross, 8th Main Road, Connaught Place, New Delhi - 110001\nSanction Amount: INR 45,00,000 working capital credit facility.\nPrimary Contact: Sneha Singh (authorized signatory).",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Sneha Singh",
+        "start": 124,
+        "end": 135
+      },
+      {
+        "entity_type": "PAN",
+        "text": "HUCYU0033A",
+        "start": 151,
+        "end": 161
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "07HUCYU0033A1ZT",
+        "start": 180,
+        "end": 195
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "3937 4529 9124",
+        "start": 201,
+        "end": 215
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 257, 3th Cross, 8th Main Road, Connaught Place, New Delhi - 110001",
+        "start": 230,
+        "end": 304
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Sneha Singh",
+        "start": 320,
+        "end": 331
+      }
+    ]
+  },
+  {
+    "id": "DOC_015",
+    "category": "loan_application",
+    "title": "Loan Application - Shilpa Gupta",
+    "text": "SECURED HOUSING LOAN SANCTION NOTE\nPrimary Borrower: Shilpa Gupta\nCurrent Address: Flat No 571, 7th Cross, 3th Main Road, MCC B Block, Davangere - 577002\nKYC Identifiers:\n1. Aadhaar Card: 6987 7694 5314\n2. Income Tax PAN: QUKAN7165U\n3. Voter ID Card: GLZ4549480\nProperty Valuation: INR 85,00,000 at Whitefield.\nDisbursement requested by Shilpa Gupta following title deed verification.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Gupta",
+        "start": 53,
+        "end": 65
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 571, 7th Cross, 3th Main Road, MCC B Block, Davangere - 577002",
+        "start": 83,
+        "end": 153
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6987 7694 5314",
+        "start": 188,
+        "end": 202
+      },
+      {
+        "entity_type": "PAN",
+        "text": "QUKAN7165U",
+        "start": 222,
+        "end": 232
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "GLZ4549480",
+        "start": 251,
+        "end": 261
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Gupta",
+        "start": 266,
+        "end": 278
+      }
+    ]
+  },
+  {
+    "id": "DOC_016",
+    "category": "kyc_document",
+    "title": "KYC Record - Arjun Gupta",
+    "text": "VERIFIED DIGITAL KYC RECORD - CENTRAL REGISTRY (CKYC)\nCustomer Full Name: Arjun Gupta\nFather's Name: S/O Divya Shetty\nPermanent Address: Flat No 402, 7th Cross, 4th Main Road, Connaught Place, New Delhi - 110001\nOfficial Valid Documents (OVDs):\n- UIDAI Aadhaar: 6957 8856 8557\n- Income Tax Department PAN: NPRYH7770C\n- Election Commission Voter ID: HDX3518233\n- Republic of India Passport: P5989414\nVerification Officer: Branch Manager, SBI Bengaluru.\nCKYC Status: Authenticated for Arjun Gupta under DPDP Rules 2025.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Arjun Gupta",
+        "start": 74,
+        "end": 85
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Divya Shetty",
+        "start": 105,
+        "end": 117
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 402, 7th Cross, 4th Main Road, Connaught Place, New Delhi - 110001",
+        "start": 137,
+        "end": 211
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6957 8856 8557",
+        "start": 262,
+        "end": 276
+      },
+      {
+        "entity_type": "PAN",
+        "text": "NPRYH7770C",
+        "start": 306,
+        "end": 316
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "HDX3518233",
+        "start": 349,
+        "end": 359
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "P5989414",
+        "start": 390,
+        "end": 398
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Arjun Gupta",
+        "start": 411,
+        "end": 422
+      }
+    ]
+  },
+  {
+    "id": "DOC_017",
+    "category": "kyc_document",
+    "title": "KYC Record - Rajesh Rao",
+    "text": "ANNUAL CUSTOMER DUE DILIGENCE (CDD) PROFILE\nClient Identity: Rajesh Rao\nCurrent Address: Flat No 815, 11th Cross, 8th Main Road, MCC B Block, Davangere - 577002\nTax Identification: PAN JAWRE4008J with Aadhaar linking 3094 7775 2047.\nSecondary OVD: Passport D9699939.\nRisk Category: Low Risk Individual Account.\nAll notifications to be dispatched to Rajesh Rao.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Rajesh Rao",
+        "start": 61,
+        "end": 71
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 815, 11th Cross, 8th Main Road, MCC B Block, Davangere - 577002",
+        "start": 89,
+        "end": 160
+      },
+      {
+        "entity_type": "PAN",
+        "text": "JAWRE4008J",
+        "start": 185,
+        "end": 195
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "3094 7775 2047",
+        "start": 212,
+        "end": 226
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "D9699939",
+        "start": 257,
+        "end": 265
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Rajesh Rao",
+        "start": 279,
+        "end": 289
+      }
+    ]
+  },
+  {
+    "id": "DOC_018",
+    "category": "kyc_document",
+    "title": "KYC Record - Pradeep Hegde",
+    "text": "MSME ENTERPRISE ONBOARDING & BENEFICIAL OWNER KYC\nEntity Trade Name: Sri Manjunatha Logistics\nSole Proprietor: Pradeep Hegde\nOperating Address: Flat No 317, 11th Cross, 2th Main Road, Dwarka Sector 10, New Delhi - 110075\nEnterprise GSTIN: 03SNJST0913U4ZS\nProprietor PAN: SNJST0913U\nProprietor Aadhaar: 4328 1206 7974\nVoter ID: WJW7134936\nConsent for CIBIL & GST fetch approved by Pradeep Hegde.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Pradeep Hegde",
+        "start": 111,
+        "end": 124
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 317, 11th Cross, 2th Main Road, Dwarka Sector 10, New Delhi - 110075",
+        "start": 144,
+        "end": 220
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "03SNJST0913U4ZS",
+        "start": 239,
+        "end": 254
+      },
+      {
+        "entity_type": "PAN",
+        "text": "SNJST0913U",
+        "start": 263,
+        "end": 273
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "4328 1206 7974",
+        "start": 289,
+        "end": 303
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Pradeep Hegde",
+        "start": 295,
+        "end": 308
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "WJW7134936",
+        "start": 327,
+        "end": 337
+      }
+    ]
+  },
+  {
+    "id": "DOC_019",
+    "category": "kyc_document",
+    "title": "KYC Record - Deepak Kulkarni",
+    "text": "VERIFIED DIGITAL KYC RECORD - CENTRAL REGISTRY (CKYC)\nCustomer Full Name: Deepak Kulkarni\nFather's Name: S/O Rajesh Hegde\nPermanent Address: Flat No 549, 10th Cross, 1th Main Road, JP Nagar, Bengaluru - 560078\nOfficial Valid Documents (OVDs):\n- UIDAI Aadhaar: 8594 0139 9049\n- Income Tax Department PAN: DOWJW6488P\n- Election Commission Voter ID: QUO4296717\n- Republic of India Passport: L7551257\nVerification Officer: Branch Manager, SBI Bengaluru.\nCKYC Status: Authenticated for Deepak Kulkarni under DPDP Rules 2025.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Deepak Kulkarni",
+        "start": 74,
+        "end": 89
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Rajesh Hegde",
+        "start": 109,
+        "end": 121
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 549, 10th Cross, 1th Main Road, JP Nagar, Bengaluru - 560078",
+        "start": 141,
+        "end": 209
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "8594 0139 9049",
+        "start": 260,
+        "end": 274
+      },
+      {
+        "entity_type": "PAN",
+        "text": "DOWJW6488P",
+        "start": 304,
+        "end": 314
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "QUO4296717",
+        "start": 347,
+        "end": 357
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "L7551257",
+        "start": 388,
+        "end": 396
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Deepak Kulkarni",
+        "start": 415,
+        "end": 430
+      }
+    ]
+  },
+  {
+    "id": "DOC_020",
+    "category": "kyc_document",
+    "title": "KYC Record - Tanvi Kulkarni",
+    "text": "ANNUAL CUSTOMER DUE DILIGENCE (CDD) PROFILE\nClient Identity: Tanvi Kulkarni\nCurrent Address: Flat No 774, 7th Cross, 1th Main Road, Sector 62, Noida - 201309\nTax Identification: PAN BOCKI5168A with Aadhaar linking 5859 7703 4824.\nSecondary OVD: Passport C4171275.\nRisk Category: Low Risk Individual Account.\nAll notifications to be dispatched to Tanvi Kulkarni.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Tanvi Kulkarni",
+        "start": 61,
+        "end": 75
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 774, 7th Cross, 1th Main Road, Sector 62, Noida - 201309",
+        "start": 93,
+        "end": 157
+      },
+      {
+        "entity_type": "PAN",
+        "text": "BOCKI5168A",
+        "start": 182,
+        "end": 192
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "5859 7703 4824",
+        "start": 209,
+        "end": 223
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "C4171275",
+        "start": 254,
+        "end": 262
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Tanvi Kulkarni",
+        "start": 283,
+        "end": 297
+      }
+    ]
+  },
+  {
+    "id": "DOC_021",
+    "category": "kyc_document",
+    "title": "KYC Record - Neha Bhat",
+    "text": "MSME ENTERPRISE ONBOARDING & BENEFICIAL OWNER KYC\nEntity Trade Name: Sri Manjunatha Logistics\nSole Proprietor: Neha Bhat\nOperating Address: Flat No 383, 6th Cross, 5th Main Road, T Nagar, Chennai - 600017\nEnterprise GSTIN: 35HOREM3982C7Z3\nProprietor PAN: HOREM3982C\nProprietor Aadhaar: 2449 9727 8755\nVoter ID: KGW3963605\nConsent for CIBIL & GST fetch approved by Neha Bhat.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Neha Bhat",
+        "start": 111,
+        "end": 120
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 383, 6th Cross, 5th Main Road, T Nagar, Chennai - 600017",
+        "start": 140,
+        "end": 204
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "35HOREM3982C7Z3",
+        "start": 223,
+        "end": 238
+      },
+      {
+        "entity_type": "PAN",
+        "text": "HOREM3982C",
+        "start": 247,
+        "end": 257
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "2449 9727 8755",
+        "start": 273,
+        "end": 287
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Neha Bhat",
+        "start": 291,
+        "end": 300
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "KGW3963605",
+        "start": 311,
+        "end": 321
+      }
+    ]
+  },
+  {
+    "id": "DOC_022",
+    "category": "kyc_document",
+    "title": "KYC Record - Swati Patel",
+    "text": "VERIFIED DIGITAL KYC RECORD - CENTRAL REGISTRY (CKYC)\nCustomer Full Name: Swati Patel\nFather's Name: S/O Harish Patel\nPermanent Address: Flat No 372, 10th Cross, 7th Main Road, Banjara Hills, Hyderabad - 500034\nOfficial Valid Documents (OVDs):\n- UIDAI Aadhaar: 3586 5780 9134\n- Income Tax Department PAN: QOAXE6217Z\n- Election Commission Voter ID: DYU1724005\n- Republic of India Passport: B5556239\nVerification Officer: Branch Manager, SBI Bengaluru.\nCKYC Status: Authenticated for Swati Patel under DPDP Rules 2025.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Swati Patel",
+        "start": 74,
+        "end": 85
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Harish Patel",
+        "start": 105,
+        "end": 117
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 372, 10th Cross, 7th Main Road, Banjara Hills, Hyderabad - 500034",
+        "start": 137,
+        "end": 210
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "3586 5780 9134",
+        "start": 261,
+        "end": 275
+      },
+      {
+        "entity_type": "PAN",
+        "text": "QOAXE6217Z",
+        "start": 305,
+        "end": 315
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "DYU1724005",
+        "start": 348,
+        "end": 358
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "B5556239",
+        "start": 389,
+        "end": 397
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Swati Patel",
+        "start": 411,
+        "end": 422
+      }
+    ]
+  },
+  {
+    "id": "DOC_023",
+    "category": "kyc_document",
+    "title": "KYC Record - Alok Agarwal",
+    "text": "ANNUAL CUSTOMER DUE DILIGENCE (CDD) PROFILE\nClient Identity: Alok Agarwal\nCurrent Address: Flat No 573, 8th Cross, 5th Main Road, Dwarka Sector 10, New Delhi - 110075\nTax Identification: PAN FCTMT3792H with Aadhaar linking 2748 2175 9464.\nSecondary OVD: Passport A7409098.\nRisk Category: Low Risk Individual Account.\nAll notifications to be dispatched to Alok Agarwal.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Alok Agarwal",
+        "start": 61,
+        "end": 73
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 573, 8th Cross, 5th Main Road, Dwarka Sector 10, New Delhi - 110075",
+        "start": 91,
+        "end": 166
+      },
+      {
+        "entity_type": "PAN",
+        "text": "FCTMT3792H",
+        "start": 191,
+        "end": 201
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "2748 2175 9464",
+        "start": 218,
+        "end": 232
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "A7409098",
+        "start": 263,
+        "end": 271
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Alok Agarwal",
+        "start": 281,
+        "end": 293
+      }
+    ]
+  },
+  {
+    "id": "DOC_024",
+    "category": "kyc_document",
+    "title": "KYC Record - Rajesh Rao",
+    "text": "MSME ENTERPRISE ONBOARDING & BENEFICIAL OWNER KYC\nEntity Trade Name: Sri Manjunatha Logistics\nSole Proprietor: Rajesh Rao\nOperating Address: Flat No 552, 10th Cross, 6th Main Road, Koramangala, Bengaluru - 560034\nEnterprise GSTIN: 18UGTIV2104Z3ZQ\nProprietor PAN: UGTIV2104Z\nProprietor Aadhaar: 4145 6232 8588\nVoter ID: PZJ5171236\nConsent for CIBIL & GST fetch approved by Rajesh Rao.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Rajesh Rao",
+        "start": 111,
+        "end": 121
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 552, 10th Cross, 6th Main Road, Koramangala, Bengaluru - 560034",
+        "start": 141,
+        "end": 212
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "18UGTIV2104Z3ZQ",
+        "start": 231,
+        "end": 246
+      },
+      {
+        "entity_type": "PAN",
+        "text": "UGTIV2104Z",
+        "start": 255,
+        "end": 265
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "4145 6232 8588",
+        "start": 281,
+        "end": 295
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Rajesh Rao",
+        "start": 292,
+        "end": 302
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "PZJ5171236",
+        "start": 319,
+        "end": 329
+      }
+    ]
+  },
+  {
+    "id": "DOC_025",
+    "category": "kyc_document",
+    "title": "KYC Record - Preeti Singh",
+    "text": "VERIFIED DIGITAL KYC RECORD - CENTRAL REGISTRY (CKYC)\nCustomer Full Name: Preeti Singh\nFather's Name: S/O Siddharth Agarwal\nPermanent Address: Flat No 436, 11th Cross, 2th Main Road, Connaught Place, New Delhi - 110001\nOfficial Valid Documents (OVDs):\n- UIDAI Aadhaar: 9461 2004 7113\n- Income Tax Department PAN: MULDV3709R\n- Election Commission Voter ID: OLV8692617\n- Republic of India Passport: U7405378\nVerification Officer: Branch Manager, SBI Bengaluru.\nCKYC Status: Authenticated for Preeti Singh under DPDP Rules 2025.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Preeti Singh",
+        "start": 74,
+        "end": 86
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Siddharth Agarwal",
+        "start": 106,
+        "end": 123
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 436, 11th Cross, 2th Main Road, Connaught Place, New Delhi - 110001",
+        "start": 143,
+        "end": 218
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "9461 2004 7113",
+        "start": 269,
+        "end": 283
+      },
+      {
+        "entity_type": "PAN",
+        "text": "MULDV3709R",
+        "start": 313,
+        "end": 323
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "OLV8692617",
+        "start": 356,
+        "end": 366
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "U7405378",
+        "start": 397,
+        "end": 405
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Preeti Singh",
+        "start": 412,
+        "end": 424
+      }
+    ]
+  },
+  {
+    "id": "DOC_026",
+    "category": "kyc_document",
+    "title": "KYC Record - Divya Singh",
+    "text": "ANNUAL CUSTOMER DUE DILIGENCE (CDD) PROFILE\nClient Identity: Divya Singh\nCurrent Address: Flat No 194, 11th Cross, 1th Main Road, Bandra Kurla Complex, Mumbai - 400051\nTax Identification: PAN LRULB6431O with Aadhaar linking 2532 9318 3933.\nSecondary OVD: Passport L4950241.\nRisk Category: Low Risk Individual Account.\nAll notifications to be dispatched to Divya Singh.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Divya Singh",
+        "start": 61,
+        "end": 72
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 194, 11th Cross, 1th Main Road, Bandra Kurla Complex, Mumbai - 400051",
+        "start": 90,
+        "end": 167
+      },
+      {
+        "entity_type": "PAN",
+        "text": "LRULB6431O",
+        "start": 192,
+        "end": 202
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "2532 9318 3933",
+        "start": 219,
+        "end": 233
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "L4950241",
+        "start": 264,
+        "end": 272
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Divya Singh",
+        "start": 280,
+        "end": 291
+      }
+    ]
+  },
+  {
+    "id": "DOC_027",
+    "category": "kyc_document",
+    "title": "KYC Record - Suresh Shetty",
+    "text": "MSME ENTERPRISE ONBOARDING & BENEFICIAL OWNER KYC\nEntity Trade Name: Sri Manjunatha Logistics\nSole Proprietor: Suresh Shetty\nOperating Address: Flat No 616, 10th Cross, 1th Main Road, Connaught Place, New Delhi - 110001\nEnterprise GSTIN: 21DXCPO5891O3ZE\nProprietor PAN: DXCPO5891O\nProprietor Aadhaar: 6700 7661 7711\nVoter ID: EIT9856984\nConsent for CIBIL & GST fetch approved by Suresh Shetty.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Suresh Shetty",
+        "start": 111,
+        "end": 124
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 616, 10th Cross, 1th Main Road, Connaught Place, New Delhi - 110001",
+        "start": 144,
+        "end": 219
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "21DXCPO5891O3ZE",
+        "start": 238,
+        "end": 253
+      },
+      {
+        "entity_type": "PAN",
+        "text": "DXCPO5891O",
+        "start": 262,
+        "end": 272
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6700 7661 7711",
+        "start": 288,
+        "end": 302
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Suresh Shetty",
+        "start": 295,
+        "end": 308
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "EIT9856984",
+        "start": 326,
+        "end": 336
+      }
+    ]
+  },
+  {
+    "id": "DOC_028",
+    "category": "kyc_document",
+    "title": "KYC Record - Nandini Hegde",
+    "text": "VERIFIED DIGITAL KYC RECORD - CENTRAL REGISTRY (CKYC)\nCustomer Full Name: Nandini Hegde\nFather's Name: S/O Manoj Bhat\nPermanent Address: Flat No 362, 3th Cross, 8th Main Road, Kothrud, Pune - 411038\nOfficial Valid Documents (OVDs):\n- UIDAI Aadhaar: 3111 6152 8098\n- Income Tax Department PAN: KOMNX1565V\n- Election Commission Voter ID: LVY6049451\n- Republic of India Passport: T9327316\nVerification Officer: Branch Manager, SBI Bengaluru.\nCKYC Status: Authenticated for Nandini Hegde under DPDP Rules 2025.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Nandini Hegde",
+        "start": 74,
+        "end": 87
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Manoj Bhat",
+        "start": 107,
+        "end": 117
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 362, 3th Cross, 8th Main Road, Kothrud, Pune - 411038",
+        "start": 137,
+        "end": 198
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "3111 6152 8098",
+        "start": 249,
+        "end": 263
+      },
+      {
+        "entity_type": "PAN",
+        "text": "KOMNX1565V",
+        "start": 293,
+        "end": 303
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "LVY6049451",
+        "start": 336,
+        "end": 346
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "T9327316",
+        "start": 377,
+        "end": 385
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Nandini Hegde",
+        "start": 413,
+        "end": 426
+      }
+    ]
+  },
+  {
+    "id": "DOC_029",
+    "category": "kyc_document",
+    "title": "KYC Record - Shilpa Patel",
+    "text": "ANNUAL CUSTOMER DUE DILIGENCE (CDD) PROFILE\nClient Identity: Shilpa Patel\nCurrent Address: Flat No 774, 1th Cross, 3th Main Road, Dwarka Sector 10, New Delhi - 110075\nTax Identification: PAN HZNRY9980T with Aadhaar linking 6455 0229 6120.\nSecondary OVD: Passport C1229015.\nRisk Category: Low Risk Individual Account.\nAll notifications to be dispatched to Shilpa Patel.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Patel",
+        "start": 61,
+        "end": 73
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 774, 1th Cross, 3th Main Road, Dwarka Sector 10, New Delhi - 110075",
+        "start": 91,
+        "end": 166
+      },
+      {
+        "entity_type": "PAN",
+        "text": "HZNRY9980T",
+        "start": 191,
+        "end": 201
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6455 0229 6120",
+        "start": 218,
+        "end": 232
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "C1229015",
+        "start": 263,
+        "end": 271
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Patel",
+        "start": 281,
+        "end": 293
+      }
+    ]
+  },
+  {
+    "id": "DOC_030",
+    "category": "kyc_document",
+    "title": "KYC Record - Harish Kapoor",
+    "text": "MSME ENTERPRISE ONBOARDING & BENEFICIAL OWNER KYC\nEntity Trade Name: Sri Manjunatha Logistics\nSole Proprietor: Harish Kapoor\nOperating Address: Flat No 391, 9th Cross, 5th Main Road, DLF Phase 2, Gurugram - 122002\nEnterprise GSTIN: 21TONIG8156D2ZA\nProprietor PAN: TONIG8156D\nProprietor Aadhaar: 2369 0034 3244\nVoter ID: PXN2268388\nConsent for CIBIL & GST fetch approved by Harish Kapoor.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Harish Kapoor",
+        "start": 111,
+        "end": 124
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 391, 9th Cross, 5th Main Road, DLF Phase 2, Gurugram - 122002",
+        "start": 144,
+        "end": 213
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "21TONIG8156D2ZA",
+        "start": 232,
+        "end": 247
+      },
+      {
+        "entity_type": "PAN",
+        "text": "TONIG8156D",
+        "start": 256,
+        "end": 266
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "2369 0034 3244",
+        "start": 282,
+        "end": 296
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Harish Kapoor",
+        "start": 295,
+        "end": 308
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "PXN2268388",
+        "start": 320,
+        "end": 330
+      }
+    ]
+  },
+  {
+    "id": "DOC_031",
+    "category": "customer_support",
+    "title": "Support Ticket - Vikram Mehta",
+    "text": "SUPPORT TICKET #TCK-52568: URGENT KYC RE-VERIFICATION\nCustomer Name: Vikram Mehta\nMessage:\nHello Support Team,\nMera naam Vikram Mehta hai aur mera savings account temporarily freeze ho gaya hai. Branch walon ne kaha ki re-KYC pending hai. Maine apna Aadhaar card 3613 6968 1645 aur PAN card SNSMW6416A upload kiya tha portal par. Mera current residential address hai: Flat No 276, 14th Cross, 6th Main Road, Sector 62, Noida - 201309. Aap please verify karke mera account activate kar dijiye. Regards, Vikram Mehta.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Vikram Mehta",
+        "start": 69,
+        "end": 81
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Vikram Mehta",
+        "start": 121,
+        "end": 133
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "3613 6968 1645",
+        "start": 263,
+        "end": 277
+      },
+      {
+        "entity_type": "PAN",
+        "text": "SNSMW6416A",
+        "start": 291,
+        "end": 301
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 276, 14th Cross, 6th Main Road, Sector 62, Noida - 201309",
+        "start": 358,
+        "end": 423
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Vikram Mehta",
+        "start": 436,
+        "end": 448
+      }
+    ]
+  },
+  {
+    "id": "DOC_032",
+    "category": "customer_support",
+    "title": "Support Ticket - Vikram Nair",
+    "text": "SUPPORT TICKET #TCK-93269: FASTAG RECHARGE AND REFUND GRIEVANCE\nApplicant Name: Vikram Nair\nMessage:\nSir, mera payment FASTag wallet me deduct ho gaya par wallet update nahi hua. Verification ke liye mera Voter ID BBL4119986 aur PAN YUPOY9979U attached hai. Mera registered address Flat No 740, 14th Cross, 6th Main Road, Banjara Hills, Hyderabad - 500034 hai. Please check and credit back. Thanks, Vikram Nair.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Vikram Nair",
+        "start": 80,
+        "end": 91
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "BBL4119986",
+        "start": 214,
+        "end": 224
+      },
+      {
+        "entity_type": "PAN",
+        "text": "YUPOY9979U",
+        "start": 233,
+        "end": 243
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 740, 14th Cross, 6th Main Road, Banjara Hills, Hyderabad - 500034",
+        "start": 277,
+        "end": 350
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Vikram Nair",
+        "start": 330,
+        "end": 341
+      }
+    ]
+  },
+  {
+    "id": "DOC_033",
+    "category": "customer_support",
+    "title": "Support Ticket - Kavita Verma",
+    "text": "SUPPORT TICKET #TCK-67377: GST INVOICE RECONCILIATION DISCREPANCY\nClient Name: Kavita Verma\nMessage:\nGreetings Helpdesk, hamare B2B billing me GST credit reflect nahi ho raha hai. Our company GSTIN is 19ODZKW1820H5ZJ registered against PAN ODZKW1820H. Authorized contact person is Kavita Verma, resident of Flat No 550, 6th Cross, 6th Main Road, Andheri West, Mumbai - 400058. Kindly resolve the input tax discrepancy urgently.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Kavita Verma",
+        "start": 79,
+        "end": 91
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "19ODZKW1820H5ZJ",
+        "start": 201,
+        "end": 216
+      },
+      {
+        "entity_type": "PAN",
+        "text": "ODZKW1820H",
+        "start": 232,
+        "end": 242
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Kavita Verma",
+        "start": 268,
+        "end": 280
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 550, 6th Cross, 6th Main Road, Andheri West, Mumbai - 400058",
+        "start": 294,
+        "end": 362
+      }
+    ]
+  },
+  {
+    "id": "DOC_034",
+    "category": "customer_support",
+    "title": "Support Ticket - Shilpa Sharma",
+    "text": "SUPPORT TICKET #TCK-20114: INTERNATIONAL ROAMING & SIM RE-ISSUE\nSubscriber Name: Shilpa Sharma\nMessage:\nNamaste Team, mera SIM card international travel ke dauran damage ho gaya. Mera passport number hai L8746887 aur Aadhaar number hai 7929 6222 9270. Please send the replacement eSIM or physical SIM to my residence: Flat No 403, 9th Cross, 1th Main Road, Vidyanagar, Davangere - 577004. Mera naam Shilpa Sharma hai. Thank you.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Sharma",
+        "start": 81,
+        "end": 94
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "L8746887",
+        "start": 204,
+        "end": 212
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "7929 6222 9270",
+        "start": 238,
+        "end": 252
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 403, 9th Cross, 1th Main Road, Vidyanagar, Davangere - 577004",
+        "start": 315,
+        "end": 384
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Sharma",
+        "start": 336,
+        "end": 349
+      }
+    ]
+  },
+  {
+    "id": "DOC_035",
+    "category": "customer_support",
+    "title": "Support Ticket - Deepak Reddy",
+    "text": "SUPPORT TICKET #TCK-77621: URGENT KYC RE-VERIFICATION\nCustomer Name: Deepak Reddy\nMessage:\nHello Support Team,\nMera naam Deepak Reddy hai aur mera savings account temporarily freeze ho gaya hai. Branch walon ne kaha ki re-KYC pending hai. Maine apna Aadhaar card 6782 6137 5060 aur PAN card ZTEIB7581W upload kiya tha portal par. Mera current residential address hai: Flat No 228, 2th Cross, 3th Main Road, Madhapur, Hyderabad - 500081. Aap please verify karke mera account activate kar dijiye. Regards, Deepak Reddy.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Deepak Reddy",
+        "start": 69,
+        "end": 81
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Deepak Reddy",
+        "start": 121,
+        "end": 133
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6782 6137 5060",
+        "start": 263,
+        "end": 277
+      },
+      {
+        "entity_type": "PAN",
+        "text": "ZTEIB7581W",
+        "start": 291,
+        "end": 301
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 228, 2th Cross, 3th Main Road, Madhapur, Hyderabad - 500081",
+        "start": 358,
+        "end": 425
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Deepak Reddy",
+        "start": 436,
+        "end": 448
+      }
+    ]
+  },
+  {
+    "id": "DOC_036",
+    "category": "customer_support",
+    "title": "Support Ticket - Ananya Sharma",
+    "text": "SUPPORT TICKET #TCK-47762: FASTAG RECHARGE AND REFUND GRIEVANCE\nApplicant Name: Ananya Sharma\nMessage:\nSir, mera payment FASTag wallet me deduct ho gaya par wallet update nahi hua. Verification ke liye mera Voter ID NAT5396218 aur PAN IGERX9861Y attached hai. Mera registered address Flat No 344, 2th Cross, 1th Main Road, Madhapur, Hyderabad - 500081 hai. Please check and credit back. Thanks, Ananya Sharma.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Ananya Sharma",
+        "start": 80,
+        "end": 93
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "NAT5396218",
+        "start": 216,
+        "end": 226
+      },
+      {
+        "entity_type": "PAN",
+        "text": "IGERX9861Y",
+        "start": 235,
+        "end": 245
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 344, 2th Cross, 1th Main Road, Madhapur, Hyderabad - 500081",
+        "start": 279,
+        "end": 346
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Ananya Sharma",
+        "start": 332,
+        "end": 345
+      }
+    ]
+  },
+  {
+    "id": "DOC_037",
+    "category": "customer_support",
+    "title": "Support Ticket - Pradeep Chatterjee",
+    "text": "SUPPORT TICKET #TCK-96127: GST INVOICE RECONCILIATION DISCREPANCY\nClient Name: Pradeep Chatterjee\nMessage:\nGreetings Helpdesk, hamare B2B billing me GST credit reflect nahi ho raha hai. Our company GSTIN is 03BUMLI0515H5ZM registered against PAN BUMLI0515H. Authorized contact person is Pradeep Chatterjee, resident of Flat No 744, 13th Cross, 6th Main Road, Vidyanagar, Davangere - 577004. Kindly resolve the input tax discrepancy urgently.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Pradeep Chatterjee",
+        "start": 79,
+        "end": 97
+      },
+      {
+        "entity_type": "GSTIN",
+        "text": "03BUMLI0515H5ZM",
+        "start": 207,
+        "end": 222
+      },
+      {
+        "entity_type": "PAN",
+        "text": "BUMLI0515H",
+        "start": 238,
+        "end": 248
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Pradeep Chatterjee",
+        "start": 274,
+        "end": 292
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 744, 13th Cross, 6th Main Road, Vidyanagar, Davangere - 577004",
+        "start": 306,
+        "end": 376
+      }
+    ]
+  },
+  {
+    "id": "DOC_038",
+    "category": "customer_support",
+    "title": "Support Ticket - Pooja Singh",
+    "text": "SUPPORT TICKET #TCK-78062: INTERNATIONAL ROAMING & SIM RE-ISSUE\nSubscriber Name: Pooja Singh\nMessage:\nNamaste Team, mera SIM card international travel ke dauran damage ho gaya. Mera passport number hai C7582028 aur Aadhaar number hai 3692 8451 1544. Please send the replacement eSIM or physical SIM to my residence: Flat No 374, 12th Cross, 7th Main Road, JP Nagar, Bengaluru - 560078. Mera naam Pooja Singh hai. Thank you.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Pooja Singh",
+        "start": 81,
+        "end": 92
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "C7582028",
+        "start": 202,
+        "end": 210
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "3692 8451 1544",
+        "start": 236,
+        "end": 250
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 374, 12th Cross, 7th Main Road, JP Nagar, Bengaluru - 560078",
+        "start": 313,
+        "end": 381
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Pooja Singh",
+        "start": 334,
+        "end": 345
+      }
+    ]
+  },
+  {
+    "id": "DOC_039",
+    "category": "customer_support",
+    "title": "Support Ticket - Amit Iyer",
+    "text": "SUPPORT TICKET #TCK-30111: URGENT KYC RE-VERIFICATION\nCustomer Name: Amit Iyer\nMessage:\nHello Support Team,\nMera naam Amit Iyer hai aur mera savings account temporarily freeze ho gaya hai. Branch walon ne kaha ki re-KYC pending hai. Maine apna Aadhaar card 9192 8565 4310 aur PAN card CHYUL5690T upload kiya tha portal par. Mera current residential address hai: Flat No 796, 6th Cross, 6th Main Road, Sector 62, Noida - 201309. Aap please verify karke mera account activate kar dijiye. Regards, Amit Iyer.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Amit Iyer",
+        "start": 69,
+        "end": 78
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Amit Iyer",
+        "start": 118,
+        "end": 127
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "9192 8565 4310",
+        "start": 257,
+        "end": 271
+      },
+      {
+        "entity_type": "PAN",
+        "text": "CHYUL5690T",
+        "start": 285,
+        "end": 295
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 796, 6th Cross, 6th Main Road, Sector 62, Noida - 201309",
+        "start": 352,
+        "end": 416
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Amit Iyer",
+        "start": 430,
+        "end": 439
+      }
+    ]
+  },
+  {
+    "id": "DOC_040",
+    "category": "customer_support",
+    "title": "Support Ticket - Gaurav Kapoor",
+    "text": "SUPPORT TICKET #TCK-57381: FASTAG RECHARGE AND REFUND GRIEVANCE\nApplicant Name: Gaurav Kapoor\nMessage:\nSir, mera payment FASTag wallet me deduct ho gaya par wallet update nahi hua. Verification ke liye mera Voter ID MWX7866912 aur PAN LWCRR4422Z attached hai. Mera registered address Flat No 621, 2th Cross, 4th Main Road, Connaught Place, New Delhi - 110001 hai. Please check and credit back. Thanks, Gaurav Kapoor.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Gaurav Kapoor",
+        "start": 80,
+        "end": 93
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "MWX7866912",
+        "start": 216,
+        "end": 226
+      },
+      {
+        "entity_type": "PAN",
+        "text": "LWCRR4422Z",
+        "start": 235,
+        "end": 245
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 621, 2th Cross, 4th Main Road, Connaught Place, New Delhi - 110001",
+        "start": 279,
+        "end": 353
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Gaurav Kapoor",
+        "start": 332,
+        "end": 345
+      }
+    ]
+  },
+  {
+    "id": "DOC_041",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Sunita Iyer",
+    "text": "HEALTH INSURANCE CASHLESS HOSPITALIZATION CLAIM FORM\nClaim Number: CLM-HEALTH-644103\nInsured Patient Name: Sunita Iyer\nNominee Name: S/O Nandini Mukherjee\nPolicyholder Address: Flat No 391, 5th Cross, 4th Main Road, JP Nagar, Bengaluru - 560078\nIdentity Proofs:\n- Patient Aadhaar: 6249 8182 9922\n- Taxpayer PAN: BDQEJ2253L\n- Passport ID: V5396908\nDiagnosis: Acute appendicitis, Manipal Hospital Bengaluru.\nApproved Settlement: Rs. 1,45,000.\nClaimant signature authorized by Sunita Iyer.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Sunita Iyer",
+        "start": 107,
+        "end": 118
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Nandini Mukherjee",
+        "start": 137,
+        "end": 154
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 391, 5th Cross, 4th Main Road, JP Nagar, Bengaluru - 560078",
+        "start": 177,
+        "end": 244
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6249 8182 9922",
+        "start": 281,
+        "end": 295
+      },
+      {
+        "entity_type": "PAN",
+        "text": "BDQEJ2253L",
+        "start": 312,
+        "end": 322
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "V5396908",
+        "start": 338,
+        "end": 346
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Sunita Iyer",
+        "start": 405,
+        "end": 416
+      }
+    ]
+  },
+  {
+    "id": "DOC_042",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Rajesh Malhotra",
+    "text": "MOTOR VEHICLE THIRD-PARTY ACCIDENT SETTLEMENT CLAIM\nClaim Reference: MOT-IN-560959\nRegistered Owner: Rajesh Malhotra\nOwner Address: Flat No 526, 8th Cross, 4th Main Road, DLF Phase 2, Gurugram - 122002\nOwner PAN: HZZVM4710F\nOwner Aadhaar: 7925 5562 5881\nOwner Voter Card: KHO1473210\nVehicle Registration: KA-04-MB-4521.\nSurveyor assessment approved for payment directly to Rajesh Malhotra.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Rajesh Malhotra",
+        "start": 101,
+        "end": 116
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 526, 8th Cross, 4th Main Road, DLF Phase 2, Gurugram - 122002",
+        "start": 132,
+        "end": 201
+      },
+      {
+        "entity_type": "PAN",
+        "text": "HZZVM4710F",
+        "start": 213,
+        "end": 223
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "7925 5562 5881",
+        "start": 234,
+        "end": 248
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "KHO1473210",
+        "start": 272,
+        "end": 282
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Rajesh Malhotra",
+        "start": 303,
+        "end": 318
+      }
+    ]
+  },
+  {
+    "id": "DOC_043",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Arjun Nair",
+    "text": "HEALTH INSURANCE CASHLESS HOSPITALIZATION CLAIM FORM\nClaim Number: CLM-HEALTH-325595\nInsured Patient Name: Arjun Nair\nNominee Name: S/O Tanvi Mukherjee\nPolicyholder Address: Flat No 698, 1th Cross, 1th Main Road, Kothrud, Pune - 411038\nIdentity Proofs:\n- Patient Aadhaar: 6797 4801 6245\n- Taxpayer PAN: OPJPA1687H\n- Passport ID: S5168785\nDiagnosis: Acute appendicitis, Manipal Hospital Bengaluru.\nApproved Settlement: Rs. 1,45,000.\nClaimant signature authorized by Arjun Nair.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Arjun Nair",
+        "start": 107,
+        "end": 117
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Tanvi Mukherjee",
+        "start": 136,
+        "end": 151
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 698, 1th Cross, 1th Main Road, Kothrud, Pune - 411038",
+        "start": 174,
+        "end": 235
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6797 4801 6245",
+        "start": 272,
+        "end": 286
+      },
+      {
+        "entity_type": "PAN",
+        "text": "OPJPA1687H",
+        "start": 303,
+        "end": 313
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "S5168785",
+        "start": 329,
+        "end": 337
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Arjun Nair",
+        "start": 404,
+        "end": 414
+      }
+    ]
+  },
+  {
+    "id": "DOC_044",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Pooja Iyer",
+    "text": "MOTOR VEHICLE THIRD-PARTY ACCIDENT SETTLEMENT CLAIM\nClaim Reference: MOT-IN-624369\nRegistered Owner: Pooja Iyer\nOwner Address: Flat No 142, 1th Cross, 3th Main Road, Koramangala, Bengaluru - 560034\nOwner PAN: LZKRL2398M\nOwner Aadhaar: 7787 2982 5952\nOwner Voter Card: MTX4958887\nVehicle Registration: KA-04-MB-4521.\nSurveyor assessment approved for payment directly to Pooja Iyer.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Pooja Iyer",
+        "start": 101,
+        "end": 111
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 142, 1th Cross, 3th Main Road, Koramangala, Bengaluru - 560034",
+        "start": 127,
+        "end": 197
+      },
+      {
+        "entity_type": "PAN",
+        "text": "LZKRL2398M",
+        "start": 209,
+        "end": 219
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "7787 2982 5952",
+        "start": 230,
+        "end": 244
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "MTX4958887",
+        "start": 268,
+        "end": 278
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Pooja Iyer",
+        "start": 298,
+        "end": 308
+      }
+    ]
+  },
+  {
+    "id": "DOC_045",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Aarti Shetty",
+    "text": "HEALTH INSURANCE CASHLESS HOSPITALIZATION CLAIM FORM\nClaim Number: CLM-HEALTH-603787\nInsured Patient Name: Aarti Shetty\nNominee Name: S/O Priya Chopra\nPolicyholder Address: Flat No 275, 3th Cross, 4th Main Road, Viman Nagar, Pune - 411014\nIdentity Proofs:\n- Patient Aadhaar: 2913 0756 2636\n- Taxpayer PAN: PIUZY9930S\n- Passport ID: W8865279\nDiagnosis: Acute appendicitis, Manipal Hospital Bengaluru.\nApproved Settlement: Rs. 1,45,000.\nClaimant signature authorized by Aarti Shetty.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Aarti Shetty",
+        "start": 107,
+        "end": 119
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Priya Chopra",
+        "start": 138,
+        "end": 150
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 275, 3th Cross, 4th Main Road, Viman Nagar, Pune - 411014",
+        "start": 173,
+        "end": 238
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "2913 0756 2636",
+        "start": 275,
+        "end": 289
+      },
+      {
+        "entity_type": "PAN",
+        "text": "PIUZY9930S",
+        "start": 306,
+        "end": 316
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "W8865279",
+        "start": 332,
+        "end": 340
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Aarti Shetty",
+        "start": 406,
+        "end": 418
+      }
+    ]
+  },
+  {
+    "id": "DOC_046",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Swati Das",
+    "text": "MOTOR VEHICLE THIRD-PARTY ACCIDENT SETTLEMENT CLAIM\nClaim Reference: MOT-IN-392559\nRegistered Owner: Swati Das\nOwner Address: Flat No 672, 4th Cross, 5th Main Road, Madhapur, Hyderabad - 500081\nOwner PAN: YXVUZ4973H\nOwner Aadhaar: 6375 7584 4198\nOwner Voter Card: MML2404157\nVehicle Registration: KA-04-MB-4521.\nSurveyor assessment approved for payment directly to Swati Das.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Swati Das",
+        "start": 101,
+        "end": 110
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 672, 4th Cross, 5th Main Road, Madhapur, Hyderabad - 500081",
+        "start": 126,
+        "end": 193
+      },
+      {
+        "entity_type": "PAN",
+        "text": "YXVUZ4973H",
+        "start": 205,
+        "end": 215
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "6375 7584 4198",
+        "start": 226,
+        "end": 240
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "MML2404157",
+        "start": 264,
+        "end": 274
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Swati Das",
+        "start": 297,
+        "end": 306
+      }
+    ]
+  },
+  {
+    "id": "DOC_047",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Neha Iyer",
+    "text": "HEALTH INSURANCE CASHLESS HOSPITALIZATION CLAIM FORM\nClaim Number: CLM-HEALTH-533377\nInsured Patient Name: Neha Iyer\nNominee Name: S/O Rohan Chopra\nPolicyholder Address: Flat No 439, 2th Cross, 3th Main Road, DLF Phase 2, Gurugram - 122002\nIdentity Proofs:\n- Patient Aadhaar: 2826 7734 5401\n- Taxpayer PAN: XSHHB8330D\n- Passport ID: P3400492\nDiagnosis: Acute appendicitis, Manipal Hospital Bengaluru.\nApproved Settlement: Rs. 1,45,000.\nClaimant signature authorized by Neha Iyer.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Neha Iyer",
+        "start": 107,
+        "end": 116
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Rohan Chopra",
+        "start": 135,
+        "end": 147
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 439, 2th Cross, 3th Main Road, DLF Phase 2, Gurugram - 122002",
+        "start": 170,
+        "end": 239
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "2826 7734 5401",
+        "start": 276,
+        "end": 290
+      },
+      {
+        "entity_type": "PAN",
+        "text": "XSHHB8330D",
+        "start": 307,
+        "end": 317
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "P3400492",
+        "start": 333,
+        "end": 341
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Neha Iyer",
+        "start": 403,
+        "end": 412
+      }
+    ]
+  },
+  {
+    "id": "DOC_048",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Swati Kulkarni",
+    "text": "MOTOR VEHICLE THIRD-PARTY ACCIDENT SETTLEMENT CLAIM\nClaim Reference: MOT-IN-270387\nRegistered Owner: Swati Kulkarni\nOwner Address: Flat No 849, 11th Cross, 5th Main Road, Sector 62, Noida - 201309\nOwner PAN: RQPEQ7431K\nOwner Aadhaar: 4054 9329 6685\nOwner Voter Card: CMV1227530\nVehicle Registration: KA-04-MB-4521.\nSurveyor assessment approved for payment directly to Swati Kulkarni.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Swati Kulkarni",
+        "start": 101,
+        "end": 115
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 849, 11th Cross, 5th Main Road, Sector 62, Noida - 201309",
+        "start": 131,
+        "end": 196
+      },
+      {
+        "entity_type": "PAN",
+        "text": "RQPEQ7431K",
+        "start": 208,
+        "end": 218
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "4054 9329 6685",
+        "start": 229,
+        "end": 243
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "CMV1227530",
+        "start": 267,
+        "end": 277
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Swati Kulkarni",
+        "start": 302,
+        "end": 316
+      }
+    ]
+  },
+  {
+    "id": "DOC_049",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Siddharth Malhotra",
+    "text": "HEALTH INSURANCE CASHLESS HOSPITALIZATION CLAIM FORM\nClaim Number: CLM-HEALTH-907236\nInsured Patient Name: Siddharth Malhotra\nNominee Name: S/O Shilpa Gowda\nPolicyholder Address: Flat No 419, 11th Cross, 5th Main Road, Vidyanagar, Davangere - 577004\nIdentity Proofs:\n- Patient Aadhaar: 7933 2727 9568\n- Taxpayer PAN: HBVDO4268W\n- Passport ID: Y6191089\nDiagnosis: Acute appendicitis, Manipal Hospital Bengaluru.\nApproved Settlement: Rs. 1,45,000.\nClaimant signature authorized by Siddharth Malhotra.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Siddharth Malhotra",
+        "start": 107,
+        "end": 125
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Shilpa Gowda",
+        "start": 144,
+        "end": 156
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 419, 11th Cross, 5th Main Road, Vidyanagar, Davangere - 577004",
+        "start": 179,
+        "end": 249
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "7933 2727 9568",
+        "start": 286,
+        "end": 300
+      },
+      {
+        "entity_type": "PAN",
+        "text": "HBVDO4268W",
+        "start": 317,
+        "end": 327
+      },
+      {
+        "entity_type": "PASSPORT",
+        "text": "Y6191089",
+        "start": 343,
+        "end": 351
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Siddharth Malhotra",
+        "start": 412,
+        "end": 430
+      }
+    ]
+  },
+  {
+    "id": "DOC_050",
+    "category": "insurance_claim",
+    "title": "Insurance Claim - Arjun Agarwal",
+    "text": "MOTOR VEHICLE THIRD-PARTY ACCIDENT SETTLEMENT CLAIM\nClaim Reference: MOT-IN-567122\nRegistered Owner: Arjun Agarwal\nOwner Address: Flat No 157, 3th Cross, 7th Main Road, Sector 62, Noida - 201309\nOwner PAN: KQODV3971Q\nOwner Aadhaar: 9908 7406 4039\nOwner Voter Card: CBN5180170\nVehicle Registration: KA-04-MB-4521.\nSurveyor assessment approved for payment directly to Arjun Agarwal.",
+    "entities": [
+      {
+        "entity_type": "PERSON",
+        "text": "Arjun Agarwal",
+        "start": 101,
+        "end": 114
+      },
+      {
+        "entity_type": "ADDRESS",
+        "text": "Flat No 157, 3th Cross, 7th Main Road, Sector 62, Noida - 201309",
+        "start": 130,
+        "end": 194
+      },
+      {
+        "entity_type": "PAN",
+        "text": "KQODV3971Q",
+        "start": 206,
+        "end": 216
+      },
+      {
+        "entity_type": "AADHAAR",
+        "text": "9908 7406 4039",
+        "start": 227,
+        "end": 241
+      },
+      {
+        "entity_type": "VOTER_ID",
+        "text": "CBN5180170",
+        "start": 265,
+        "end": 275
+      },
+      {
+        "entity_type": "PERSON",
+        "text": "Arjun Agarwal",
+        "start": 301,
+        "end": 314
+      }
+    ]
+  }
+]

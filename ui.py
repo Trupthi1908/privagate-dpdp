@@ -34,13 +34,34 @@ import streamlit as st
 
 
 def ensure_spacy_model(model_name: str = "en_core_web_sm") -> None:
-    """Ensures spaCy model is downloaded programmatically at runtime on Streamlit Cloud."""
+    """Ensures that the specified spaCy model is installed into user space at runtime on Streamlit Cloud."""
     try:
         import spacy
         try:
             spacy.load(model_name)
+            return
         except Exception:
-            subprocess.run([sys.executable, "-m", "spacy", "download", model_name], check=True)
+            pass
+
+        wheel_url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl"
+        res = subprocess.run(
+            [sys.executable, "-m", "pip", "install", "--user", wheel_url],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if res.returncode != 0:
+            subprocess.run(
+                [sys.executable, "-m", "spacy", "download", model_name, "--user"],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+        import site
+        user_site = site.getusersitepackages()
+        if user_site and user_site not in sys.path:
+            sys.path.append(user_site)
     except Exception:
         pass
 

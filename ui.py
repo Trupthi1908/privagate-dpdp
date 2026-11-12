@@ -1269,6 +1269,9 @@ if "tab1_main_doc_box" not in st.session_state:
 if "tab1_doc_name" not in st.session_state:
     st.session_state["tab1_doc_name"] = "None"
 
+if "tab1_uploader_version" not in st.session_state:
+    st.session_state["tab1_uploader_version"] = 0
+
 if "tab1_results" not in st.session_state:
     st.session_state["tab1_results"] = None
 
@@ -1361,20 +1364,21 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
             col_up, col_edit = st.columns([1.1, 1.2])
 
             with col_up:
+                uploader_ver = st.session_state.get("tab1_uploader_version", 0)
                 up_pdf, up_img = st.columns(2)
                 with up_pdf:
                     uploaded_doc = st.file_uploader(
                         "📄 PDF / Text File",
                         type=["pdf", "txt", "docx"],
                         help="Extracts text dynamically via pypdf (/api/v1/parse-document).",
-                        key="tab1_file_uploader",
+                        key=f"tab1_file_uploader_{uploader_ver}",
                     )
                 with up_img:
                     uploaded_img = st.file_uploader(
                         "🖼️ Image (TrOCR OCR)",
                         type=["png", "jpg", "jpeg", "webp"],
                         help="Image-to-Text OCR connecting to Hugging Face TrOCR endpoint (/api/v1/extract-text).",
-                        key="tab1_img_uploader",
+                        key=f"tab1_img_uploader_{uploader_ver}",
                     )
 
                 if uploaded_doc is not None and st.session_state.get("last_uploaded_filename") != uploaded_doc.name:
@@ -1415,6 +1419,20 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                     st.info("ℹ️ **No document or image uploaded yet.** Please upload a real PDF or Image above to activate processing.")
 
             with col_edit:
+                c_lbl, c_btn = st.columns([1.1, 1.3])
+                with c_lbl:
+                    st.markdown("**Active Document Content:**")
+                with c_btn:
+                    if st.button("❌ Remove Current Document", key="btn_remove_active_doc", use_container_width=True):
+                        st.session_state["active_document_text"] = ""
+                        st.session_state["tab1_active_doc"] = ""
+                        st.session_state["tab1_main_doc_box"] = ""
+                        st.session_state["tab1_doc_name"] = None
+                        st.session_state["last_uploaded_filename"] = None
+                        st.session_state["tab1_results"] = None
+                        st.session_state["tab1_uploader_version"] = st.session_state.get("tab1_uploader_version", 0) + 1
+                        st.rerun()
+
                 # Starts completely empty unless populated by real file upload
                 doc_to_display = st.session_state.get("active_document_text", "")
 
@@ -1425,6 +1443,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                     key="tab1_main_doc_box",
                     placeholder="Document text will appear here automatically once you upload a real PDF, TXT, or DOCX file above...",
                     help="Displays extracted text from your uploaded document. Downstream chatbot and privacy gateway strictly process this text.",
+                    label_visibility="collapsed",
                 )
                 # Synchronize active document context across views
                 st.session_state["active_document_text"] = input_text

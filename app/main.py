@@ -32,18 +32,12 @@ def ensure_spacy_model(model_name: str = "en_core_web_sm") -> None:
         except Exception:
             pass
 
-        wheel_url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl"
         subprocess.run(
-            [sys.executable, "-m", "pip", "install", "--user", wheel_url],
+            [sys.executable, "-m", "spacy", "download", model_name],
             capture_output=True,
             text=True,
             check=False,
         )
-
-        import site
-        user_site = site.getusersitepackages()
-        if user_site and user_site not in sys.path:
-            sys.path.append(user_site)
     except Exception:
         pass
 

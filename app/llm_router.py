@@ -344,6 +344,7 @@ class LLMRouter:
             m_crs = re.search(r"(?i)(?:course(?:\s*(?:name|of\s*study))?|\bdegree\b|\bacademic\s*program\b|\bprogram\b)(?:\s*/\s*degree)?\s*[:\-]?\s*([^\n\r,;]+)", text)
             if m_crs:
                 val = m_crs.group(1).strip()
+                val = re.sub(r"^[\*\s:]+", "", val).strip()
                 val = re.sub(r"\s+(?:INR|Rs\.?|₹).*$", "", val, flags=re.IGNORECASE).strip()
                 if len(val) > 1 and "not " not in val.lower():
                     extracted_course = val
@@ -799,6 +800,7 @@ class LLMRouter:
         m_crs = re.search(r"(?i)(?:course(?:\s*(?:name|of\s*study))?|\bdegree\b|\bacademic\s*program\b|\bprogram\b)(?:\s*/\s*degree)?\s*[:\-]?\s*([^\n\r,;]+)", ctx)
         if m_crs:
             val = m_crs.group(1).strip()
+            val = re.sub(r"^[\*\s:]+", "", val).strip()
             val = re.sub(r"\s+(?:INR|Rs\.?|₹).*$", "", val, flags=re.IGNORECASE).strip()
             if len(val) > 1 and "not " not in val.lower():
                 course_val = val

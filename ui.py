@@ -587,16 +587,30 @@ def get_gateway_engines():
 
 engines = get_gateway_engines()
 
-# Production Render Backend Configuration
-BACKEND_URL = os.getenv("BACKEND_URL", "https://privagate-backend.onrender.com/api/v1")
-try:
-    if hasattr(st, "secrets") and "BACKEND_URL" in st.secrets:
-        BACKEND_URL = st.secrets["BACKEND_URL"]
-except Exception:
-    pass
+# Production Render & Local Backend Configuration
+_env_backend = os.getenv("BACKEND_URL")
+if not _env_backend:
+    try:
+        if hasattr(st, "secrets") and "BACKEND_URL" in st.secrets:
+            _env_backend = st.secrets["BACKEND_URL"]
+    except Exception:
+        pass
 
-# Clean base host without trailing /api/v1 for unified endpoint URL construction
-_raw_backend = BACKEND_URL.rstrip("/")
+if not _env_backend:
+    # Auto-detect local port 8000 first, else fallback to cloud Render
+    try:
+        r_probe = requests.get("http://127.0.0.1:8000/api/v1/health", timeout=0.4)
+        if r_probe.status_code == 200:
+            _env_backend = "http://127.0.0.1:8000"
+        else:
+            _env_backend = "https://privagate-backend.onrender.com"
+    except Exception:
+        _env_backend = "http://127.0.0.1:8000"
+
+if "custom_backend_url" not in st.session_state:
+    st.session_state["custom_backend_url"] = _env_backend
+
+_raw_backend = (st.session_state.get("custom_backend_url") or _env_backend).rstrip("/")
 if _raw_backend.endswith("/api/v1"):
     API_BASE_URL = _raw_backend[:-7]
 else:
@@ -1245,36 +1259,57 @@ selected_view = st.sidebar.radio(
 
 st.sidebar.divider()
 
-# Backend Connectivity Status Badge
+# Backend Connectivity Status Badge & Server URL Selector
 backend_health = BackendClient.check_health()
 is_backend_online = backend_health.get("online", False)
 
+display_host = API_BASE_URL.replace("https://", "").replace("http://", "")
+if len(display_host) > 28:
+    display_host = display_host[:25] + "..."
+
 if is_backend_online:
     st.sidebar.markdown(
-        """
-        <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 8px 12px; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
+        f"""
+        <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 8px 12px; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span class="pulsing-dot" style="background:#10B981;"></span>
-            <span style="color: #34D399; font-size: 0.76rem; font-weight: 700;">FASTAPI HTTP CONNECTED</span>
+            <span style="color: #34D399; font-size: 0.76rem; font-weight: 700;">FASTAPI CONNECTED</span>
           </div>
-          <span style="color: #94A3B8; font-size: 0.72rem; font-family: monospace;">:8000</span>
+          <span style="color: #94A3B8; font-size: 0.70rem; font-family: monospace;">{display_host}</span>
         </div>
         """,
         unsafe_allow_html=True,
     )
 else:
     st.sidebar.markdown(
-        """
-        <div style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 10px; padding: 8px 12px; margin-bottom: 0.85rem;">
+        f"""
+        <div style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 10px; padding: 8px 12px; margin-bottom: 0.5rem;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="color: #F87171; font-size: 0.8rem;">⚠️</span>
-            <span style="color: #F87171; font-size: 0.76rem; font-weight: 700;">FASTAPI OFFLINE (FALLBACK)</span>
+            <span style="color: #F87171; font-size: 0.76rem; font-weight: 700;">BACKEND OFFLINE (FALLBACK)</span>
           </div>
-          <div style="color: #CBD5E1; font-size: 0.7rem; margin-top: 3px;">Start: <code>uvicorn app.main:app --port 8000</code></div>
+          <div style="color: #CBD5E1; font-size: 0.7rem; margin-top: 3px;">Target: <code>{display_host}</code></div>
         </div>
         """,
         unsafe_allow_html=True,
     )
+
+with st.sidebar.expander("⚙️ Backend Server Configuration", expanded=not is_backend_online):
+    new_target_url = st.text_input(
+        "Target API Host:",
+        value=API_BASE_URL,
+        key="input_backend_target_url",
+        help="Connect to local (http://127.0.0.1:8000) or Render cloud (https://<your-app>.onrender.com)",
+    )
+    c_btn1, c_btn2 = st.columns(2)
+    with c_btn1:
+        if st.button("🔗 Connect", key="btn_apply_backend_url", use_container_width=True):
+            st.session_state["custom_backend_url"] = new_target_url.strip()
+            st.rerun()
+    with c_btn2:
+        if st.button("💻 Set Local", key="btn_set_local_backend", use_container_width=True):
+            st.session_state["custom_backend_url"] = "http://127.0.0.1:8000"
+            st.rerun()
 
 st.sidebar.markdown('<div class="saas-section-title" style="font-size: 0.95rem; margin-top: 0.1rem;">⚡ Sentinel Live Telemetry</div>', unsafe_allow_html=True)
 st.sidebar.caption("Real-time Gateway throughput and zero-leak firewall verification metrics.")

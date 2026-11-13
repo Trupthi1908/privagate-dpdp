@@ -277,9 +277,259 @@ def create_loan_sanction_letter():
     print(f"Created: {out_path} ({width}x{height})")
     return out_path
 
+
+def get_handwriting_font(size: int):
+    """Loads a realistic cursive or handwriting font."""
+    font_candidates = ["inkfree.ttf", "segoesc.ttf", "comic.ttf", "arial.ttf"]
+    for fc in font_candidates:
+        fp = Path("C:/Windows/Fonts") / fc
+        if fp.exists():
+            try:
+                return ImageFont.truetype(str(fp), size)
+            except Exception:
+                continue
+    return ImageFont.load_default()
+
+
+def create_handwritten_application():
+    """Generates a realistic handwritten leave application & medical report
+    using natural handwriting fonts on a lined clinic sheet.
+    """
+    width = 950
+    height = 1250
+    # Warm ivory / notepad paper
+    img = Image.new("RGB", (width, height), color="#FCFBF7")
+    draw = ImageDraw.Draw(img)
+
+    # Ruled faint notebook lines
+    line_spacing = 38
+    margin_top = 220
+    for ly in range(margin_top, height - 80, line_spacing):
+        draw.line([(50, ly), (width - 50, ly)], fill="#E5E7EB", width=1)
+
+    # Red vertical margin line on left
+    draw.line([(95, margin_top - 30), (95, height - 60)], fill="#FCA5A5", width=2)
+
+    # Printed Clinic Header
+    f_head = get_font(20, bold=True)
+    f_sub = get_font(12, bold=False)
+    f_sm = get_font(11, bold=False)
+
+    draw.rectangle([0, 0, width, 140], fill="#F1F5F9")
+    draw.line([(0, 140), (width, 140)], fill="#CBD5E1", width=2)
+
+    draw.text((width // 2, 22), "CITY CARE CLINIC & DIAGNOSTIC CENTRE", fill="#0F172A", font=f_head, anchor="mt")
+    draw.text((width // 2, 52), "#108, Healthcare Avenue, Malleshwaram, Bengaluru - 560003 | Ph: 080-23456789", fill="#475569", font=f_sub, anchor="mt")
+    draw.text((width // 2, 74), "Dr. Rajesh Kulkarni, MBBS, MD (Internal Medicine) — Reg No: KMC-58291", fill="#1E40AF", font=f_sub, anchor="mt")
+    draw.text((width // 2, 98), "PATIENT MEDICAL REPORT & STUDENT LEAVE RECOMMENDATION", fill="#DC2626", font=f_sub, anchor="mt")
+
+    # Handwriting styling
+    f_hw_lg = get_handwriting_font(23)
+    f_hw_md = get_handwriting_font(20)
+    f_hw_sm = get_handwriting_font(18)
+    ink_color = "#1E3A8A"  # Royal blue ballpoint pen ink
+
+    # Date and place
+    draw.text((width - 80, 160), "Date: 14-Nov-2024", fill=ink_color, font=f_hw_sm, anchor="rt")
+    draw.text((width - 80, 185), "Place: Bengaluru", fill=ink_color, font=f_hw_sm, anchor="rt")
+
+    # Letter body
+    y = 230
+    draw.text((115, y), "To,", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "The Head of Department (HOD),", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "Department of Computer Science & Engineering,", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "National Institute of Technology (NIT).", fill=ink_color, font=f_hw_md)
+    y += line_spacing + 5
+
+    draw.text((115, y), "Subject: Medical Leave Application & Doctor Advice Report", fill=ink_color, font=f_hw_lg)
+    y += line_spacing + 5
+
+    draw.text((115, y), "Respected Sir / Madam,", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+
+    draw.text((115, y), "I am writing to formally submit this leave application on medical grounds.", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "Patient Name: Sneha Patil", fill=ink_color, font=f_hw_lg)
+    y += line_spacing
+    draw.text((115, y), "Roll Number / Student ID: 21CS088", fill=ink_color, font=f_hw_lg)
+    y += line_spacing
+    draw.text((115, y), "Aadhaar Card Reference: 6712 3490 8125", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "Contact Mobile Number: +91 98451 22340", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+
+    draw.text((115, y), "Medical Diagnosis: Acute Viral Jaundice with High Fever", fill=ink_color, font=f_hw_lg)
+    y += line_spacing
+    draw.text((115, y), "Consulting Physician: Dr. Rajesh Kulkarni (City Care Clinic)", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "Prescribed Period of Leave: 14 Days (Strict Bed Rest)", fill=ink_color, font=f_hw_lg)
+    y += line_spacing
+    draw.text((115, y), "Leave Dates Requested: 14-Nov-2024 to 28-Nov-2024", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+
+    draw.text((115, y), "I kindly request you to approve my leave for 14 days and excuse", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "my absence from laboratory and theoretical lecture sessions.", fill=ink_color, font=f_hw_md)
+    y += line_spacing + 15
+
+    draw.text((115, y), "Thanking you,", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "Yours obediently,", fill=ink_color, font=f_hw_md)
+    y += line_spacing
+    draw.text((115, y), "Sneha Patil (Roll No: 21CS088)", fill=ink_color, font=f_hw_lg)
+
+    # Doctor stamp & signature box on right
+    stamp_y = y - 40
+    draw.rounded_rectangle([width - 320, stamp_y, width - 60, stamp_y + 110], radius=8, outline="#1E40AF", width=2)
+    draw.text((width - 190, stamp_y + 12), "CLINICAL ATTESTATION", fill="#1E40AF", font=f_sm, anchor="mt")
+    draw.text((width - 190, stamp_y + 32), "City Care Clinic & Diagnostics", fill="#1E3A8A", font=f_sm, anchor="mt")
+    draw.text((width - 190, stamp_y + 52), "Signed: Dr. Rajesh Kulkarni", fill="#1E3A8A", font=f_hw_sm, anchor="mt")
+    draw.text((width - 190, stamp_y + 80), "Reg: KMC-58291 / Approved", fill="#059669", font=f_sm, anchor="mt")
+
+    # DPDP privacy notice at bottom
+    draw.text((width // 2, height - 30), "DPDP Act 2023 Compliant: Health and Medical Personal Identifiers Masked by PrivaGate Gateway", fill="#9CA3AF", font=f_sm, anchor="mt")
+
+    out_path = OUTPUT_DIR / "handwritten_leave_application.png"
+    img.save(out_path, format="PNG", dpi=(150, 150))
+    print(f"Created: {out_path} ({width}x{height})")
+    return out_path
+
+
+def create_blossoms_therapy_form():
+    """Generates a high-resolution, realistic patient intake & clinical therapy form
+    for Blossom's Therapy Center.
+    """
+    width = 1000
+    height = 1350
+    img = Image.new("RGB", (width, height), color="#FFFFFF")
+    draw = ImageDraw.Draw(img)
+
+    f_title = get_font(24, bold=True)
+    f_sub = get_font(13, bold=False)
+    f_sec = get_font(15, bold=True)
+    f_lbl = get_font(13, bold=True)
+    f_val = get_font(13, bold=False)
+    f_sm = get_font(11, bold=False)
+
+    # Top Clinic Header Banner (Teal Theme)
+    draw.rectangle([0, 0, width, 120], fill="#0F766E")
+    draw.text((width // 2, 22), "BLOSSOM'S THERAPY CENTER", fill="#FFFFFF", font=f_title, anchor="mt")
+    draw.text((width // 2, 56), "Comprehensive Pediatric Rehabilitation & Child Development Clinic", fill="#CCFBF1", font=f_sub, anchor="mt")
+    draw.text((width // 2, 80), "#45, Rainbow Crescent, Koramangala 4th Block, Bengaluru - 560034 | Ph: +91 98765 11223", fill="#99F6E4", font=f_sm, anchor="mt")
+
+    # Document Frame
+    draw.rounded_rectangle([40, 140, width - 40, height - 50], radius=10, fill="#FFFFFF", outline="#CBD5E1", width=2)
+
+    # Sub-Banner Form Title
+    draw.text((width // 2, 160), "PATIENT INTAKE & CLINICAL THERAPY REGISTRATION FORM", fill="#0F172A", font=f_sec, anchor="mt")
+    draw.line([(60, 190), (width - 60, 190)], fill="#E2E8F0", width=1)
+
+    y = 205
+
+    def draw_sec_header(title: str, curr_y: int) -> int:
+        draw.rounded_rectangle([60, curr_y, width - 60, curr_y + 30], radius=5, fill="#F0FDFA", outline="#99F6E4", width=1)
+        draw.text((75, curr_y + 6), title, fill="#0F766E", font=f_sec)
+        return curr_y + 42
+
+    def draw_field_row(fields: list, curr_y: int) -> int:
+        col_w = (width - 120) // len(fields)
+        for i, (label, val, highlight) in enumerate(fields):
+            col_x = 60 + (i * col_w)
+            draw.text((col_x + 10, curr_y), label, fill="#64748B", font=f_lbl)
+            val_color = "#0F766E" if highlight else "#0F172A"
+            draw.text((col_x + 10, curr_y + 20), val, fill=val_color, font=f_val)
+        return curr_y + 48
+
+    # Section 1: Patient Information
+    y = draw_sec_header("1. PATIENT DEMOGRAPHICS & IDENTIFICATION", y)
+    y = draw_field_row([
+        ("Patient Full Name:", "Aarav Sharma", True),
+        ("Date of Birth / Age:", "12-May-2018 (Age: 6 Years)", False),
+        ("Gender:", "Male", False),
+    ], y)
+    y = draw_field_row([
+        ("National ID / Aadhaar Reference:", "3892 4510 6721", True),
+        ("Primary Language at Home:", "English, Hindi, Kannada", False),
+        ("School Enrolled:", "Oakridge International School (Grade 1)", False),
+    ], y)
+
+    # Section 2: Parent / Guardian Information
+    y = draw_sec_header("2. PARENT / PRIMARY GUARDIAN DETAILS", y)
+    y = draw_field_row([
+        ("Parent / Guardian Name:", "Vikram Sharma", True),
+        ("Relationship to Patient:", "Father", False),
+        ("Mother's Name:", "Priya Sharma", False),
+    ], y)
+    y = draw_field_row([
+        ("Primary Contact Mobile:", "+91 98452 77889", True),
+        ("Emergency Contact:", "+91 98451 33445", False),
+        ("Guardian Email:", "vikram.sharma@example.com", False),
+    ], y)
+    y = draw_field_row([
+        ("Permanent Residential Address:", "#12, Palm Grove, HSR Layout Sector 2, Bengaluru, Karnataka - 560102", False),
+    ], y)
+
+    # Section 3: Clinical Therapy Referral & Assessment
+    y = draw_sec_header("3. CLINICAL REFERRAL & THERAPEUTIC ASSESSMENT", y)
+    y = draw_field_row([
+        ("Referring Pediatrician:", "Dr. Sunita Rao, MD (Pediatrics) — Rainbow Children Hospital", False),
+        ("Intake Registration Date:", "14-Nov-2024", False),
+    ], y)
+    y = draw_field_row([
+        ("Primary Therapy Program Requested:", "Pediatric Speech Therapy & Sensory Occupational Therapy", True),
+    ], y)
+    y = draw_field_row([
+        ("Chief Complaints / Presenting Concerns:", "Expressive Language Delay, Articulation Challenges, & Sensory Tactile Sensitivity", False),
+    ], y)
+    y = draw_field_row([
+        ("Clinical Diagnosis / Impression:", "Mild Expressive Speech Delay & Sensory Processing Sensitivity", True),
+        ("Session Frequency:", "3 Sessions / Week", False),
+    ], y)
+    y = draw_field_row([
+        ("Attending Senior Therapist:", "Dr. Meera Nambiar, OTR/L (Senior Clinical Specialist)", True),
+        ("Clinic Center Branch:", "Blossom's Therapy Center — Koramangala Hub", False),
+    ], y)
+
+    # Section 4: Medical History & Milestones
+    y = draw_sec_header("4. DEVELOPMENTAL HISTORY & MEDICAL PROFILE", y)
+    y = draw_field_row([
+        ("Birth History / Gestation:", "Full Term Normal Delivery (No NICU Stay)", False),
+        ("Hearing & Vision Screening:", "Normal / Passed at 4 Years", False),
+    ], y)
+    y = draw_field_row([
+        ("Known Allergies or Medications:", "No Known Drug Allergies (NKDA)", False),
+        ("Prior Interventions:", "Attended 3 months early stimulation program", False),
+    ], y)
+
+    # Section 5: DPDP Consent & Confidentiality Assurance
+    y = draw_sec_header("5. DIGITAL PERSONAL DATA PROTECTION (DPDP) CONSENT", y)
+    draw.rounded_rectangle([60, y, width - 60, y + 80], radius=6, fill="#F0FDF4", outline="#BBF7D0", width=1)
+    draw.text((75, y + 10), "🛡️ HEALTH & MEDICAL DATA CONFIDENTIALITY ATTESTATION (DPDP ACT 2023)", fill="#166534", font=f_lbl)
+    draw.text((75, y + 32), "Parental consent is formally granted to Blossom's Therapy Center for clinical diagnostic evaluation and therapy.", fill="#15803D", font=f_sm)
+    draw.text((75, y + 50), "All child health data and identity tokens are pseudonymized and protected via PrivaGate DPDP Gateway.", fill="#15803D", font=f_sm)
+
+    # Signatures
+    y += 110
+    draw.text((80, y), "Parent / Guardian Signature", fill="#64748B", font=f_sm)
+    draw.text((80, y + 18), "Vikram Sharma", fill="#0F172A", font=f_lbl)
+
+    draw.text((width - 80, y), "Attending Clinical Therapist", fill="#64748B", font=f_sm, anchor="rt")
+    draw.text((width - 80, y + 18), "Dr. Meera Nambiar, OTR/L", fill="#0F766E", font=f_lbl, anchor="rt")
+
+    out_path = OUTPUT_DIR / "blossoms_therapy_center_patient_form.png"
+    img.save(out_path, format="PNG", dpi=(150, 150))
+    print(f"Created: {out_path} ({width}x{height})")
+    return out_path
+
+
 if __name__ == "__main__":
     create_celaf_document()
     create_aadhaar_card()
     create_loan_sanction_letter()
+    create_handwritten_application()
+    create_blossoms_therapy_form()
     print("All sample document images generated successfully!")
 

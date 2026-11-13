@@ -298,11 +298,38 @@ async def parse_document(file: UploadFile = File(...)):
         )
 
 
+def deskew_image(cv_img):
+    """Detects text orientation and auto-deskews rotated documents using minimum area rectangle."""
+    try:
+        import cv2
+        import numpy as np
+
+        gray = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY) if len(cv_img.shape) == 3 else cv_img
+        coords = np.column_stack(np.where(gray < 200))
+        if len(coords) < 50:
+            return cv_img
+        rect = cv2.minAreaRect(coords)
+        angle = rect[-1]
+        if angle < -45:
+            angle = -(90 + angle)
+        else:
+            angle = -angle
+        if 0.5 < abs(angle) < 45:
+            (h, w) = cv_img.shape[:2]
+            center = (w // 2, h // 2)
+            M = cv2.getRotationMatrix2D(center, angle, 1.0)
+            return cv2.warpAffine(cv_img, M, (w, h), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
+        return cv_img
+    except Exception:
+        return cv_img
+
+
 def preprocess_image_for_ocr(image_bytes: bytes) -> bytes:
     """Preprocesses uploaded document image with OpenCV:
-    1. Grayscale conversion.
-    2. Contrast enhancement via CLAHE (Contrast Limited Adaptive Histogram Equalization).
-    3. Noise reduction using OpenCV (fastNlMeansDenoising).
+    1. Deskewing to fix rotated camera photos.
+    2. Grayscale conversion.
+    3. Contrast enhancement via CLAHE (Contrast Limited Adaptive Histogram Equalization).
+    4. Noise reduction using OpenCV (fastNlMeansDenoising).
     Returns enhanced PNG byte stream.
     """
     try:
@@ -314,14 +341,17 @@ def preprocess_image_for_ocr(image_bytes: bytes) -> bytes:
         if img is None:
             return image_bytes
 
-        # 1. Grayscale conversion
+        # 1. Auto-deskew
+        img = deskew_image(img)
+
+        # 2. Grayscale conversion
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        # 2. Contrast enhancement via CLAHE
+        # 3. Contrast enhancement via CLAHE
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
         contrast_enhanced = clahe.apply(gray)
 
-        # 3. Noise reduction
+        # 4. Noise reduction
         denoised = cv2.fastNlMeansDenoising(contrast_enhanced, h=10)
 
         success, encoded = cv2.imencode(".png", denoised)
@@ -330,6 +360,34 @@ def preprocess_image_for_ocr(image_bytes: bytes) -> bytes:
         return image_bytes
     except Exception as e:
         logger.warning(f"OpenCV image preprocessing skipped or failed: {e}")
+        return image_bytes
+
+
+def preprocess_for_handwriting(image_bytes: bytes) -> bytes:
+    """Preprocesses handwritten reports and complex noisy scans:
+    1. Auto-deskews orientation.
+    2. Converts to grayscale.
+    3. CLAHE contrast enhancement for faint pencil/blue ink.
+    4. Adaptive Gaussian thresholding to binarize ink strokes and isolate handwriting from paper textures.
+    """
+    try:
+        import cv2
+        import numpy as np
+
+        nparr = np.frombuffer(image_bytes, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        if img is None:
+            return image_bytes
+
+        img = deskew_image(img)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
+        enhanced = clahe.apply(gray)
+        thresh = cv2.adaptiveThreshold(enhanced, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 17, 9)
+
+        success, encoded = cv2.imencode(".png", thresh)
+        return encoded.tobytes() if success else image_bytes
+    except Exception:
         return image_bytes
 
 
@@ -439,11 +497,13 @@ def parse_indian_document_fields(text: str, filename: str = "") -> Dict[str, Any
 
 @app.post("/api/v1/extract-text", response_model=ExtractTextResponse)
 async def extract_text_from_image(file: UploadFile = File(...)):
-    """Image-to-Text OCR connecting to Hugging Face's TrOCR model endpoint:
-    1. Preprocesses document image using OpenCV (grayscale, CLAHE contrast enhancement, noise reduction).
-    2. Sends enhanced image to Hugging Face TrOCR endpoint with Bearer token authentication.
-    3. Runs fallback regex parsing for Indian financial IDs (Aadhaar, PAN, application IDs, course, loan amount)
-       to guarantee exact numerical alignment and structured extraction for government forms.
+    """Advanced Multi-Tier Vision & OCR Intake for printed documents, handwritten applications,
+    medical reports, and complex noisy scans:
+    - Tier 1: Multimodal Vision AI (Gemini 2.5 Flash Vision) when GEMINI_API_KEY is configured.
+    - Tier 2: Local Dual-Pass RapidOCR (ONNX Runtime): Pass A on raw/contrast-enhanced image,
+              Pass B on adaptive Gaussian binarized handwriting ink image.
+    - Tier 3: OCR.space Engine 2 Cloud API (specialized deep-learning engine for handwriting & rotation).
+    - Tier 4: Image EXIF & embedded text metadata.
     """
     if not file or not file.filename:
         raise HTTPException(status_code=400, detail="No image file uploaded or filename missing.")
@@ -454,71 +514,117 @@ async def extract_text_from_image(file: UploadFile = File(...)):
             raise HTTPException(status_code=400, detail=f"Uploaded image '{file.filename}' is empty (0 bytes).")
 
         extracted_text = ""
+        model_used = "RapidOCR-ONNX (Dual-Pass Handwriting Engine)"
 
-        # Tier 1: Local RapidOCR (High-performance ONNX runtime, zero network dependency)
-        try:
-            from rapidocr_onnxruntime import RapidOCR
-            engine = RapidOCR()
-            res, _ = engine(image_bytes)
-            if res:
-                lines = [item[1].strip() for item in res if item[1] and item[1].strip()]
-                extracted_text = "\n".join(lines).strip()
-        except Exception:
-            pass
+        # Tier 1: Multimodal Vision AI (Gemini 2.5 Flash Vision)
+        gemini_key = os.getenv("GEMINI_API_KEY")
+        if gemini_key:
+            try:
+                from google import genai
+                from google.genai import types
 
-        # Tier 2: OCR.space Cloud OCR API
+                client = genai.Client(api_key=gemini_key)
+                mime = "image/png" if file.filename.lower().endswith(".png") else "image/jpeg"
+                resp = client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=[
+                        types.Part.from_bytes(data=image_bytes, mime_type=mime),
+                        (
+                            "You are an expert document OCR and transcription system. "
+                            "Transcribe all text, numbers, handwriting, forms, medical terms, headers, and labels "
+                            "in this image accurately and comprehensively. Preserve original lines and field names. "
+                            "Return ONLY the extracted document text without conversational filler."
+                        ),
+                    ],
+                )
+                if resp and resp.text and resp.text.strip():
+                    extracted_text = resp.text.strip()
+                    model_used = "Gemini 2.5 Flash Vision (Multimodal AI)"
+            except Exception as e:
+                logger.warning(f"Tier 1 Gemini Vision inference error: {e}")
+
+        # Tier 2: Local Dual-Pass RapidOCR (Pass A: Raw, Pass B: Handwriting Adaptive Binarized)
         if not extracted_text:
+            try:
+                from rapidocr_onnxruntime import RapidOCR
+
+                engine = RapidOCR()
+
+                # Pass A: Raw Image
+                res_raw, _ = engine(image_bytes)
+                lines_raw = [item[1].strip() for item in res_raw if item[1] and item[1].strip()] if res_raw else []
+
+                # Pass B: Handwriting Adaptive Preprocessed Image
+                prep_bytes = preprocess_for_handwriting(image_bytes)
+                res_prep, _ = engine(prep_bytes)
+                lines_prep = [item[1].strip() for item in res_prep if item[1] and item[1].strip()] if res_prep else []
+
+                # Select richer set
+                if len(lines_prep) > len(lines_raw):
+                    extracted_text = "\n".join(lines_prep).strip()
+                elif len(lines_raw) > 0:
+                    extracted_text = "\n".join(lines_raw).strip()
+
+                if extracted_text:
+                    model_used = "RapidOCR-ONNX (Dual-Pass Handwriting Engine)"
+            except Exception as e:
+                logger.warning(f"Tier 2 RapidOCR inference error: {e}")
+
+        # Tier 3: OCR.space Cloud OCR Engine 2 (Handwriting & Skewed Documents)
+        if not extracted_text or len(extracted_text.split()) < 3:
             try:
                 r = requests.post(
                     "https://api.ocr.space/parse/image",
                     files={"filename": (file.filename, image_bytes, "image/png")},
-                    data={"apikey": "helloworld", "language": "eng"},
-                    timeout=15,
+                    data={
+                        "apikey": "helloworld",
+                        "language": "eng",
+                        "OCREngine": "2",
+                        "scale": "true",
+                        "detectOrientation": "true",
+                    },
+                    timeout=12,
                 )
                 if r.status_code == 200:
                     data = r.json()
-                    parsed_lines = []
+                    cloud_lines = []
                     for pr in data.get("ParsedResults", []):
                         pt = pr.get("ParsedText", "").strip()
                         if pt:
-                            parsed_lines.append(pt)
-                    extracted_text = "\n".join(parsed_lines).strip()
+                            cloud_lines.append(pt)
+                    cand = "\n".join(cloud_lines).strip()
+                    if len(cand.split()) > len(extracted_text.split()):
+                        extracted_text = cand
+                        model_used = "OCR.space Engine 2 (Handwriting Deep Learning)"
             except Exception:
                 pass
 
-        # Tier 3: Image EXIF / text metadata
+        # Tier 4: Image EXIF / text metadata
         if not extracted_text:
             try:
                 from PIL import Image
+
                 img = Image.open(io.BytesIO(image_bytes))
                 meta_txt = img.info.get("text") or img.info.get("Description") or ""
-                extracted_text = meta_txt.strip()
+                if meta_txt.strip():
+                    extracted_text = meta_txt.strip()
+                    model_used = "Image Metadata / EXIF"
             except Exception:
                 pass
 
         if extracted_text.strip():
             extracted_text = re.sub(r"\[Note:.*?\]\s*", "", extracted_text).strip()
         else:
-            if any(k in file.filename.lower() for k in ["celaf", "vidyalaxmi", "loan"]):
-                hash_id = str(abs(hash(file.filename + str(len(image_bytes)))))[:5]
-                extracted_text = (
-                    f"### PM-Vidyalaxmi CELAF Form - Government Document Intake\n"
-                    f"- **Issuing Ministry**: Department of Higher Education, Ministry of Education, Government of India\n"
-                    f"- **Application ID**: CELAF-2024-PV{hash_id}\n"
-                    f"- **Applicant Name**: Verified Applicant\n"
-                    f"- **Aadhaar Number**: 4521 8832 9104\n"
-                    f"- **PAN Number**: ABCDE1234F\n"
-                    f"- **Course / Degree**: B.Tech Higher Education Degree\n"
-                    f"- **Loan Amount**: INR 7,50,000\n"
-                    f"- **Verification Status**: Verified under DPDP Act 2023 Guidelines"
-                )
-            else:
-                extracted_text = f"DOCUMENT IMAGE INTAKE: {file.filename}\nNo legible text could be extracted from this image. Please ensure the document is clear, well-lit, and contains printed text."
+            extracted_text = (
+                f"DOCUMENT IMAGE INTAKE: {file.filename}\n"
+                f"No legible text or handwriting could be extracted from this image. "
+                f"Please ensure the document image is clear, well-lit, and contains printed or legible handwritten text."
+            )
 
         return ExtractTextResponse(
             status="success",
             filename=file.filename,
-            model="RapidOCR-ONNX / OCR.space",
+            model=model_used,
             character_count=len(extracted_text),
             word_count=len(extracted_text.split()),
             extracted_text=extracted_text,

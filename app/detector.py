@@ -97,7 +97,13 @@ NON_PERSON_WORDS = {
     "home", "renovation", "tenure", "months", "branch", "manager", "direct", "directly",
     "aadhaar", "card", "pan", "gstin", "voter", "passport", "ovd", "ovds", "epic",
     "date", "dates", "disbursal", "execution", "commencement", "agreement", "facility",
-    "principal", "repayment", "interest", "rate", "floating", "amount", "sanction"
+    "principal", "repayment", "interest", "rate", "floating", "amount", "sanction",
+    "blossom", "blossoms", "therapy", "center", "centre", "clinic", "hospital",
+    "pediatric", "rehabilitation", "diagnostics", "diagnostic", "institute",
+    "department", "intake", "assessment", "developmental", "clinical", "specialist",
+    "consultant", "attending", "referral", "physician", "doctor", "form", "section",
+    "english", "hindi", "kannada", "tamil", "telugu", "marathi", "bengali",
+    "gujarati", "malayalam", "odia", "punjabi", "urdu", "assamese", "language"
 }
 
 # Indian English & Hinglish Context Patterns for PERSON

@@ -282,3 +282,4 @@ if __name__ == "__main__":
     create_aadhaar_card()
     create_loan_sanction_letter()
     print("All sample document images generated successfully!")
+

@@ -1843,8 +1843,11 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
             with chat_c1:
                 context_options = []
                 active_doc = (st.session_state.get("active_document_text") or "").strip()
-                tab1_name = st.session_state.get("tab1_doc_name", "Uploaded Document")
-                clean_tab1_name = tab1_name.split(".", 1)[-1].strip() if "." in tab1_name else tab1_name
+                raw_name = st.session_state.get("tab1_doc_name") or st.session_state.get("last_uploaded_filename") or ""
+                if isinstance(raw_name, str) and raw_name.strip() and raw_name.strip() != "None":
+                    clean_tab1_name = raw_name.strip()
+                else:
+                    clean_tab1_name = "Uploaded Document"
 
                 if active_doc:
                     context_options.append(f"📄 Uploaded File ({clean_tab1_name})")

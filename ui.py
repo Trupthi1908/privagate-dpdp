@@ -605,58 +605,8 @@ else:
 API_TIMEOUT = 30.0  # seconds (Render free tier instances can take up to 20-30s during cold starts)
 
 
-def deskew_image(cv_img):
-    """Detects text orientation and auto-deskews rotated documents using minimum area rectangle."""
-    try:
-        import cv2
-        import numpy as np
-
-        gray = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY) if len(cv_img.shape) == 3 else cv_img
-        coords = np.column_stack(np.where(gray < 200))
-        if len(coords) < 50:
-            return cv_img
-        rect = cv2.minAreaRect(coords)
-        angle = rect[-1]
-        if angle < -45:
-            angle = -(90 + angle)
-        else:
-            angle = -angle
-        if 0.5 < abs(angle) < 45:
-            (h, w) = cv_img.shape[:2]
-            center = (w // 2, h // 2)
-            M = cv2.getRotationMatrix2D(center, angle, 1.0)
-            return cv2.warpAffine(cv_img, M, (w, h), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
-        return cv_img
-    except Exception:
-        return cv_img
 
 
-def preprocess_for_handwriting(image_bytes: bytes) -> bytes:
-    """Preprocesses handwritten reports and complex noisy scans:
-    1. Auto-deskews orientation.
-    2. Converts to grayscale.
-    3. CLAHE contrast enhancement for faint pencil/blue ink.
-    4. Adaptive Gaussian thresholding to binarize ink strokes and isolate handwriting.
-    """
-    try:
-        import cv2
-        import numpy as np
-
-        nparr = np.frombuffer(image_bytes, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        if img is None:
-            return image_bytes
-
-        img = deskew_image(img)
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
-        enhanced = clahe.apply(gray)
-        thresh = cv2.adaptiveThreshold(enhanced, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 17, 9)
-
-        success, encoded = cv2.imencode(".png", thresh)
-        return encoded.tobytes() if success else image_bytes
-    except Exception:
-        return image_bytes
 
 
 class BackendClient:
@@ -742,158 +692,6 @@ class BackendClient:
             }
         except Exception as e:
             return {"status": "error", "error": f"Extraction error: {str(e)}"}
-
-    @staticmethod
-    def extract_text_ocr(image_bytes: bytes, filename: str) -> Dict[str, Any]:
-        """Calls POST /api/v1/extract-text for Image-to-Text OCR using Hugging Face TrOCR."""
-        try:
-            files = {
-                "file": (filename, image_bytes, "image/png" if filename.lower().endswith(".png") else "image/jpeg")
-            }
-            r = requests.post(f"{API_BASE_URL}/api/v1/extract-text", files=files, timeout=API_TIMEOUT)
-            if r.status_code == 200:
-                data = r.json()
-                data["backend_used"] = "http"
-                return data
-            else:
-                err_text = r.text
-                try:
-                    err_text = r.json().get("detail", err_text)
-                except Exception:
-                    pass
-                raise RuntimeError(f"HTTP {r.status_code}: {err_text}")
-        except Exception as e:
-            return BackendClient._fallback_extract_text_ocr(image_bytes, filename, str(e))
-
-    @staticmethod
-    def _fallback_extract_text_ocr(image_bytes: bytes, filename: str, error_msg: str) -> Dict[str, Any]:
-        """Fallback local OCR handler using Gemini Vision / Dual-Pass RapidOCR (ONNX) with OCR.space cloud fallback."""
-        try:
-            extracted_text = ""
-            model_used = "RapidOCR-ONNX (Dual-Pass Handwriting Engine)"
-
-            # Tier 1: Gemini 2.5 Flash Vision if key provided
-            gemini_key = st.session_state.get("gemini_api_key") or os.getenv("GEMINI_API_KEY")
-            if not gemini_key:
-                try:
-                    if hasattr(st, "secrets") and "GEMINI_API_KEY" in st.secrets:
-                        gemini_key = st.secrets["GEMINI_API_KEY"]
-                except Exception:
-                    pass
-
-            if gemini_key:
-                try:
-                    from google import genai
-                    from google.genai import types
-
-                    client = genai.Client(api_key=gemini_key)
-                    mime = "image/png" if filename.lower().endswith(".png") else "image/jpeg"
-                    resp = client.models.generate_content(
-                        model="gemini-2.5-flash",
-                        contents=[
-                            types.Part.from_bytes(data=image_bytes, mime_type=mime),
-                            (
-                                "You are an expert document OCR and transcription system. "
-                                "Transcribe all text, numbers, handwriting, forms, medical terms, headers, and labels "
-                                "in this image accurately and comprehensively. Preserve original lines and field names. "
-                                "Return ONLY the extracted document text without conversational commentary."
-                            ),
-                        ],
-                    )
-                    if resp and resp.text and resp.text.strip():
-                        extracted_text = resp.text.strip()
-                        model_used = "Gemini 2.5 Flash Vision (Multimodal AI)"
-                except Exception:
-                    pass
-
-            # Tier 2: Local Dual-Pass RapidOCR ONNX
-            if not extracted_text:
-                try:
-                    from rapidocr_onnxruntime import RapidOCR
-
-                    engine = RapidOCR()
-                    # Pass A: Raw Image
-                    res_raw, _ = engine(image_bytes)
-                    lines_raw = [item[1].strip() for item in res_raw if item[1] and item[1].strip()] if res_raw else []
-
-                    # Pass B: Handwriting Adaptive Preprocessed Image
-                    prep_bytes = preprocess_for_handwriting(image_bytes)
-                    res_prep, _ = engine(prep_bytes)
-                    lines_prep = [item[1].strip() for item in res_prep if item[1] and item[1].strip()] if res_prep else []
-
-                    if len(lines_prep) > len(lines_raw):
-                        extracted_text = "\n".join(lines_prep).strip()
-                    elif len(lines_raw) > 0:
-                        extracted_text = "\n".join(lines_raw).strip()
-
-                    if extracted_text:
-                        model_used = "RapidOCR-ONNX (Dual-Pass Handwriting Engine)"
-                except Exception:
-                    pass
-
-            # Tier 3: OCR.space Engine 2 (Handwriting Cloud API fallback)
-            if not extracted_text or len(extracted_text.split()) < 3:
-                try:
-                    r = requests.post(
-                        "https://api.ocr.space/parse/image",
-                        files={"filename": (filename, image_bytes, "image/png")},
-                        data={
-                            "apikey": "helloworld",
-                            "language": "eng",
-                            "OCREngine": "2",
-                            "scale": "true",
-                            "detectOrientation": "true",
-                        },
-                        timeout=12,
-                    )
-                    if r.status_code == 200:
-                        data = r.json()
-                        parsed_lines = []
-                        for pr in data.get("ParsedResults", []):
-                            pt = pr.get("ParsedText", "").strip()
-                            if pt:
-                                parsed_lines.append(pt)
-                        cand = "\n".join(parsed_lines).strip()
-                        if len(cand.split()) > len(extracted_text.split()):
-                            extracted_text = cand
-                            model_used = "OCR.space Engine 2 (Handwriting Deep Learning)"
-                except Exception:
-                    pass
-
-            # Tier 4: Image Metadata
-            if not extracted_text:
-                try:
-                    from PIL import Image
-
-                    img = Image.open(io.BytesIO(image_bytes))
-                    meta_txt = img.info.get("text") or img.info.get("Description") or ""
-                    if meta_txt.strip():
-                        extracted_text = meta_txt.strip()
-                        model_used = "Image Metadata / EXIF"
-                except Exception:
-                    pass
-
-            if extracted_text.strip():
-                text = re.sub(r"\[Note:.*?\]\s*", "", extracted_text).strip()
-            else:
-                text = (
-                    f"DOCUMENT IMAGE INTAKE: {filename}\n"
-                    f"No legible text or handwriting could be extracted from this image. "
-                    f"Please ensure the document image is clear, well-lit, and contains printed or legible handwritten text."
-                )
-
-            return {
-                "status": "success",
-                "backend_used": "fallback",
-                "offline_alert": error_msg,
-                "filename": filename,
-                "model": model_used,
-                "character_count": len(text),
-                "word_count": len(text.split()),
-                "extracted_text": text,
-            }
-        except Exception as e:
-            return {"status": "error", "error": f"Image processing failed: {str(e)}"}
 
     @staticmethod
     def process_gateway(
@@ -1565,7 +1363,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
         unsafe_allow_html=True,
     )
 
-    tab_intake, tab_chat = st.tabs(["📄 Document & OCR Intake", "💬 Secure AI Chatbot"])
+    tab_intake, tab_chat = st.tabs(["📄 Document Ingestion", "💬 Secure AI Chatbot"])
 
     with tab_intake:
 
@@ -1598,10 +1396,10 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                     help="Generates format-valid dummy tokens (e.g. fake PAN ABCDE1234F) so downstream regex validators don't break.",
                 )
 
-        # Document Upload Section (Strict Real File Ingestion via pypdf & RapidOCR/Gemini)
-        st.markdown("#### 📂 Document & OCR Intake (Real Document & Handwriting Ingestion)")
+        # Document Upload Section (Strict Real File Ingestion via pypdf)
+        st.markdown("#### 📂 Enterprise Document Ingestion (PDF, DOCX, TXT)")
         st.markdown(
-            '<div class="saas-section-subtitle">Upload your actual PDF document or image. PDF text is extracted via <code>/api/v1/parse-document</code> (using <code>pypdf</code>) and image/handwritten text via <code>/api/v1/extract-text</code> (using <code>RapidOCR Dual-Pass / OpenCV Handwriting Preprocessor / Gemini Vision</code>).</div>',
+            '<div class="saas-section-subtitle">Upload your actual enterprise document (PDF, DOCX, TXT). Text is extracted directly via <code>/api/v1/parse-document</code> (using <code>pypdf</code> / <code>python-docx</code>) with strict DPDP compliance and zero OCR inaccuracy.</div>',
             unsafe_allow_html=True,
         )
 
@@ -1610,24 +1408,15 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
 
             with col_up:
                 uploader_ver = st.session_state.get("tab1_uploader_version", 0)
-                up_pdf, up_img = st.columns(2)
-                with up_pdf:
-                    uploaded_doc = st.file_uploader(
-                        "📄 PDF / Text File",
-                        type=["pdf", "txt", "docx"],
-                        help="Extracts text dynamically via pypdf (/api/v1/parse-document).",
-                        key=f"tab1_file_uploader_{uploader_ver}",
-                    )
-                with up_img:
-                    uploaded_img = st.file_uploader(
-                        "🖼️ Image (OCR & Handwriting)",
-                        type=["png", "jpg", "jpeg", "webp"],
-                        help="Extracts text & handwriting via RapidOCR Dual-Pass / OpenCV Preprocessor (/api/v1/extract-text).",
-                        key=f"tab1_img_uploader_{uploader_ver}",
-                    )
+                uploaded_doc = st.file_uploader(
+                    "📄 Upload Enterprise Document (PDF, DOCX, TXT)",
+                    type=["pdf", "txt", "docx"],
+                    help="Extracts text dynamically via pypdf / python-docx (/api/v1/parse-document).",
+                    key=f"tab1_file_uploader_{uploader_ver}",
+                )
 
                 # Quick Sample Document Selectors
-                st.markdown("**⚡ Instant Test with Verified Sample Documents:**")
+                st.markdown("**⚡ Instant Test with Verified Enterprise Documents:**")
                 sc1, sc2, sc3 = st.columns(3)
                 sc4, sc5, _ = st.columns([1, 1, 1])
 
@@ -1637,36 +1426,28 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
 
                         p = Path(rel_file_path)
                         if p.exists():
-                            content_bytes = p.read_bytes()
-                            file_hash = hashlib.sha256(content_bytes).hexdigest()
+                            content_text = p.read_text(encoding="utf-8")
+                            file_hash = hashlib.sha256(content_text.encode("utf-8")).hexdigest()
                             file_name = p.name
 
                             # Strict cache invalidation on new document selection
                             st.session_state["tab1_results"] = None
-                            st.session_state["active_document_text"] = ""
-                            st.session_state["tab1_active_doc"] = ""
-                            st.session_state["tab1_main_doc_box"] = ""
+                            st.session_state["active_document_text"] = content_text
+                            st.session_state["tab1_active_doc"] = content_text
+                            st.session_state["tab1_main_doc_box"] = content_text
                             st.session_state["tab1_doc_name"] = file_name
                             st.session_state["last_uploaded_filename"] = file_name
                             st.session_state["last_uploaded_file_hash"] = file_hash
 
-                            with st.spinner(f"Extracting & processing '{file_name}' via Multi-Tier OCR & DPDP Gateway..."):
-                                o_res = BackendClient.extract_text_ocr(content_bytes, file_name)
-                                if o_res.get("status") == "success":
-                                    ext_txt = o_res.get("extracted_text", "")
-                                    st.session_state["tab1_active_doc"] = ext_txt
-                                    st.session_state["active_document_text"] = ext_txt
-                                    st.session_state["tab1_main_doc_box"] = ext_txt
-                                    st.session_state["tab1_results"] = BackendClient.process_gateway(
-                                        text=ext_txt,
-                                        task=task_code,
-                                        purpose=purpose,
-                                        llm_provider=provider,
-                                        format_preserving=format_pres,
-                                    )
-                                    st.rerun()
-                                else:
-                                    st.error(f"❌ Sample OCR Failed: {o_res.get('error')}")
+                            with st.spinner(f"Processing '{file_name}' through 4-stage DPDP Privacy Gateway..."):
+                                st.session_state["tab1_results"] = BackendClient.process_gateway(
+                                    text=content_text,
+                                    task=task_code,
+                                    purpose=purpose,
+                                    llm_provider=provider,
+                                    format_preserving=format_pres,
+                                )
+                                st.rerun()
                         else:
                             st.warning(f"Sample file not found at: {rel_file_path}")
                     except Exception as ex:
@@ -1674,43 +1455,23 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
 
                 with sc1:
                     if st.button("📄 CELAF Form", key="btn_sample_celaf", use_container_width=True, help="PM-Vidyalaxmi Education Loan Application"):
-                        _trigger_sample_doc("sample_documents/pm_vidyalaxmi_celaf_application.png")
+                        _trigger_sample_doc("sample_documents/pm_vidyalaxmi_celaf_application.txt")
                 with sc2:
                     if st.button("🌸 Blossom's Therapy Form", key="btn_sample_blossom", use_container_width=True, help="Blossom's Therapy Center Patient Intake & Therapy Registration Form"):
-                        _trigger_sample_doc("sample_documents/blossoms_therapy_center_patient_form.png")
+                        _trigger_sample_doc("sample_documents/blossoms_therapy_center_patient_form.txt")
                 with sc3:
                     if st.button("🆔 Aadhaar Card", key="btn_sample_aadhaar", use_container_width=True, help="National Identity Verification Slip"):
-                        _trigger_sample_doc("sample_documents/aadhaar_kyc_verification_card.png")
+                        _trigger_sample_doc("sample_documents/aadhaar_kyc_verification_card.txt")
                 with sc4:
                     if st.button("🏦 Sanction Letter", key="btn_sample_sanction", use_container_width=True, help="State Bank of India Loan Sanction Letter"):
-                        _trigger_sample_doc("sample_documents/loan_sanction_letter.png")
+                        _trigger_sample_doc("sample_documents/loan_sanction_letter.txt")
                 with sc5:
-                    if st.button("✍️ Handwritten Leave", key="btn_sample_handwritten", use_container_width=True, help="Handwritten Medical Leave Application & Report"):
-                        _trigger_sample_doc("sample_documents/handwritten_leave_application.png")
-
-                # Optional Vision Settings
-                with st.expander("⚙️ Advanced Vision & Handwriting Settings", expanded=False):
-                    curr_gkey = st.session_state.get("gemini_api_key", "")
-                    new_gkey = st.text_input(
-                        "Gemini API Key (Optional for Multimodal Vision AI):",
-                        value=curr_gkey,
-                        type="password",
-                        help="Optional: Enables Gemini 2.5 Flash Vision for reading ultra-complex cursive or doctor handwriting.",
-                        key="ui_gemini_key_input",
-                    )
-                    if new_gkey != curr_gkey:
-                        st.session_state["gemini_api_key"] = new_gkey
-                        st.success("✅ Gemini Vision Key updated for this session.")
-                    st.caption(
-                        "Engines: **RapidOCR ONNX (Dual-Pass)** + **OpenCV Handwriting Preprocessor** (Deskew, CLAHE, Adaptive Gaussian Binarization) + **Gemini Vision** (when key is active)."
-                    )
+                    if st.button("🏥 Clinical Leave", key="btn_sample_handwritten", use_container_width=True, help="Clinical Medical Leave Application & Certificate"):
+                        _trigger_sample_doc("sample_documents/handwritten_leave_application.txt")
 
                 # Compute SHA-256 byte hashes for uploaded files to guarantee immediate cache invalidation
                 doc_bytes = uploaded_doc.getvalue() if uploaded_doc is not None else None
                 doc_hash = hashlib.sha256(doc_bytes).hexdigest() if doc_bytes else None
-
-                img_bytes = uploaded_img.getvalue() if uploaded_img is not None else None
-                img_hash = hashlib.sha256(img_bytes).hexdigest() if img_bytes else None
 
                 if uploaded_doc is not None and st.session_state.get("last_uploaded_file_hash") != doc_hash:
                     # Invalidate previous document cache immediately
@@ -1742,40 +1503,10 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                             err_msg = parse_res.get("error") or parse_res.get("detail") or "Failed to parse document"
                             st.error(f"❌ Document Parsing Failed: {err_msg}")
 
-                elif uploaded_img is not None and st.session_state.get("last_uploaded_file_hash") != img_hash:
-                    # Invalidate previous document cache immediately
-                    st.session_state["tab1_results"] = None
-                    st.session_state["active_document_text"] = ""
-                    st.session_state["tab1_active_doc"] = ""
-                    st.session_state["tab1_main_doc_box"] = ""
-                    st.session_state["tab1_doc_name"] = uploaded_img.name
-                    st.session_state["last_uploaded_filename"] = uploaded_img.name
-                    st.session_state["last_uploaded_file_hash"] = img_hash
-
-                    with st.spinner(f"Extracting text & handwriting dynamically from '{uploaded_img.name}' via Multi-Tier OCR (/api/v1/extract-text)..."):
-                        ocr_res = BackendClient.extract_text_ocr(img_bytes, uploaded_img.name)
-                        if ocr_res.get("status") == "success":
-                            extracted_from_img = ocr_res.get("extracted_text", "")
-                            st.session_state["tab1_active_doc"] = extracted_from_img
-                            st.session_state["active_document_text"] = extracted_from_img
-                            st.session_state["tab1_main_doc_box"] = extracted_from_img
-                            with st.spinner("Processing document through 4-stage DPDP Privacy Gateway & generating summary..."):
-                                st.session_state["tab1_results"] = BackendClient.process_gateway(
-                                    text=extracted_from_img,
-                                    task=task_code,
-                                    purpose=purpose,
-                                    llm_provider=provider,
-                                    format_preserving=format_pres,
-                                )
-                            st.rerun()
-                        else:
-                            err_msg = ocr_res.get("error") or ocr_res.get("detail") or "OCR Extraction failed."
-                            st.error(f"❌ OCR Extraction Failed: {err_msg}")
-
                 if st.session_state.get("last_uploaded_filename") and st.session_state.get("active_document_text"):
                     st.success(f"✅ Loaded file: `{st.session_state['last_uploaded_filename']}` ({len(st.session_state.get('active_document_text', ''))} characters)")
                 else:
-                    st.info("ℹ️ **No document or image uploaded yet.** Please upload a real PDF or Image above to activate processing.")
+                    st.info("ℹ️ **No document uploaded yet.** Please upload an enterprise PDF, DOCX, or TXT file above, or select an instant sample.")
 
             with col_edit:
                 c_lbl, c_btn = st.columns([1.1, 1.3])

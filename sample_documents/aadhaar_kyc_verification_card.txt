@@ -1,0 +1,19 @@
+GOVERNMENT OF INDIA / UNIQUE IDENTIFICATION AUTHORITY OF INDIA (UIDAI)
+ELECTRONIC AADHAAR AUTHENTICATION & KYC VERIFICATION SLIP
+
+Verification Transaction ID: UID-AUTH-2026-88719
+Authentication Mode: Biometric / OTP Verified
+Date of Authentication: 12-Nov-2026 14:22:05 IST
+
+AADHAAR HOLDER INFORMATION:
+Full Name: Vikramaditya Singh
+Father's Name: Ranveer Singh
+Date of Birth: 05/11/1988
+Gender: Male
+Aadhaar Number: 7654 3210 9876
+Virtual ID (VID): 9182 7364 5019 2837
+PAN Linked: AXZPS8912J
+Mobile Registered: +91 98112 33445
+Permanent Address: H.No. 45, Sector 14, Chandigarh, 160014
+
+STATUS: Identity successfully authenticated under Section 7 of Aadhaar Act 2016 for DPDP compliant KYC verification.

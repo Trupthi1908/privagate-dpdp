@@ -410,8 +410,8 @@ class LLMRouter:
         if m_app:
             extracted_app = m_app.group(0).strip()
         else:
-            m_app2 = re.search(r"(?i)(?:application\s*(?:id|no|num|ref)|sanction\s*(?:ref|reference)|celaf\s*(?:id|no|ref)?)\s*[:\-]?\s*([A-Za-z0-9\-_/]+)", text)
-            if m_app2:
+            m_app2 = re.search(r"(?i)(?:application\s*(?:reference\s*)?(?:id|no|num|number|ref)|sanction\s*(?:ref|reference)|celaf\s*(?:reference\s*)?(?:id|no|num|number|ref)?)\s*[:\-]?\s*([A-Za-z0-9\-_/]+)", text)
+            if m_app2 and m_app2.group(1).strip().lower() not in ["erence", "reference", "id", "no", "number"]:
                 extracted_app = m_app2.group(1).strip()
 
         person_tokens = [t for t in unique_tokens if "PERSON" in t]
@@ -455,13 +455,21 @@ class LLMRouter:
                 extracted_pan = m_pan.group(0).strip()
 
         extracted_course = None
-        m_crs = re.search(r"(?i)(?:course(?:\s*(?:name|of\s*study|/\s*degree\s*program))?|\bdegree\b|\bacademic\s*program\b|\bprogram\b)(?:\s*/\s*degree)?\s*[:\-]?\s*([^\n\r,;]+)", text)
+        m_crs = re.search(r"(?i)(?:course\s*name|course\s*of\s*study|degree\s*program|academic\s*degree)\s*[:\-]?\s*([^\n\r,;]+)", text)
         if m_crs:
             val = m_crs.group(1).strip()
             val = re.sub(r"^[\*\s:]+", "", val).strip()
             val = re.sub(r"\s+(?:INR|Rs\.?|₹).*$", "", val, flags=re.IGNORECASE).strip()
-            if len(val) > 1 and "not " not in val.lower() and not val.startswith("&"):
+            if len(val) > 1 and "not " not in val.lower() and not val.lower().startswith("admission"):
                 extracted_course = val
+        if not extracted_course:
+            m_crs2 = re.search(r"(?i)(?:course(?:\s*(?:name|of\s*study|/\s*degree\s*program))?|\bdegree\b|\bacademic\s*program\b|\bprogram\b)(?:\s*/\s*degree)?\s*[:\-]?\s*([^\n\r,;]+)", text)
+            if m_crs2:
+                val = m_crs2.group(1).strip()
+                val = re.sub(r"^[\*\s:]+", "", val).strip()
+                val = re.sub(r"\s+(?:INR|Rs\.?|₹).*$", "", val, flags=re.IGNORECASE).strip()
+                if len(val) > 1 and "not " not in val.lower() and not val.lower().startswith("admission") and not val.startswith("&"):
+                    extracted_course = val
         if not extracted_course:
             m_deg = re.search(r"\b(?:B\.?Tech|B\.?E\.?|M\.?Tech|M\.?E\.?|MBBS|BDS|B\.?Sc|M\.?Sc|MBA|BBA|BCA|MCA|B\.?Com|Ph\.?D)\b(?:\s+(?:in\s+)?[A-Za-z\s]+)?", text, re.IGNORECASE)
             if m_deg:
@@ -474,7 +482,7 @@ class LLMRouter:
         norm_text = re.sub(r'(\d+)[oO](\d+)', r'\g<1>0\2', norm_text)
 
         extracted_amt = None
-        m_req = re.search(r"(?i)(?:requested\s*loan\s*amount|sanction(?:ed)?\s*(?:loan)?\s*amount)\s*[:\-]?\s*((?:Rs\.?|INR|₹)\s*[\d,]+(?:\.\d{1,2})?|\b[\d,]{4,12}\b)", norm_text)
+        m_req = re.search(r"(?i)(?:total\s*(?:loan\s*)?amount\s*requested|requested\s*(?:loan\s*)?amount|sanction(?:ed)?\s*(?:loan)?\s*amount)\s*[:\-]?\s*((?:Rs\.?|INR|₹)\s*[\d,]+(?:\.\d{1,2})?|\b[\d,]{4,12}\b)", norm_text)
         if m_req:
             extracted_amt = m_req.group(1).strip()
         else:

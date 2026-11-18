@@ -1987,7 +1987,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
             sample_col1, sample_col2, sample_col3, sample_col4 = st.columns(4)
 
             with sample_col1:
-                if st.button("🆔 Aadhaar KYC Card", use_container_width=True, key="btn_sample_aadhaar"):
+                if st.button("🆔 Aadhaar KYC Card", use_container_width=True, key="img_mask_btn_aadhaar"):
                     sample_path = os.path.join("sample_documents", "aadhaar_kyc_verification_card.png")
                     if os.path.exists(sample_path):
                         with open(sample_path, "rb") as f:
@@ -1995,7 +1995,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                             st.session_state["active_image_name"] = "aadhaar_kyc_verification_card.png"
 
             with sample_col2:
-                if st.button("🌸 Therapy Patient Form", use_container_width=True, key="btn_sample_therapy"):
+                if st.button("🌸 Therapy Patient Form", use_container_width=True, key="img_mask_btn_therapy"):
                     sample_path = os.path.join("sample_documents", "blossoms_therapy_center_patient_form.png")
                     if os.path.exists(sample_path):
                         with open(sample_path, "rb") as f:
@@ -2003,7 +2003,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                             st.session_state["active_image_name"] = "blossoms_therapy_center_patient_form.png"
 
             with sample_col3:
-                if st.button("🏦 Loan Sanction Letter", use_container_width=True, key="btn_sample_loan"):
+                if st.button("🏦 Loan Sanction Letter", use_container_width=True, key="img_mask_btn_loan"):
                     sample_path = os.path.join("sample_documents", "loan_sanction_letter.png")
                     if os.path.exists(sample_path):
                         with open(sample_path, "rb") as f:
@@ -2011,7 +2011,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                             st.session_state["active_image_name"] = "loan_sanction_letter.png"
 
             with sample_col4:
-                if st.button("📝 Leave Application", use_container_width=True, key="btn_sample_leave"):
+                if st.button("📝 Leave Application", use_container_width=True, key="img_mask_btn_leave"):
                     sample_path = os.path.join("sample_documents", "handwritten_leave_application.png")
                     if os.path.exists(sample_path):
                         with open(sample_path, "rb") as f:
@@ -2038,6 +2038,7 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                     "🔒 Redaction Technique",
                     ["Gaussian Blur (Default)", "Solid Box Masking ([REDACTED PII])", "Hybrid (Blur + High-Contrast Box)"],
                     index=0,
+                    key="img_mask_technique_select",
                     help="Gaussian blur gently obscures text while preserving visual context. Solid box masks completely cover sensitive fields.",
                 )
                 mode_map = {
@@ -2048,8 +2049,8 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                 mask_mode_code = mode_map.get(mask_mode_ui, "blur")
 
             with img_cfg3:
-                blur_slider = st.slider("🌫️ Blur Intensity", min_value=15, max_value=85, value=41, step=4)
-                add_watermark = st.checkbox("🛡️ Include DPDP Compliance Watermark", value=True)
+                blur_slider = st.slider("🌫️ Blur Intensity", min_value=15, max_value=85, value=41, step=4, key="img_mask_blur_slider")
+                add_watermark = st.checkbox("🛡️ Include DPDP Compliance Watermark", value=True, key="img_mask_watermark_checkbox")
 
         # Image Processing & Side-by-Side Presentation
         current_img_bytes = st.session_state.get("active_image_bytes")
@@ -2134,11 +2135,12 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                             data=sanitized_bytes,
                             file_name=f"privagate_sanitized_{current_img_name}",
                             mime="image/png",
+                            key="img_mask_download_btn",
                             use_container_width=True,
                         )
 
                 with act2:
-                    if st.button("🚀 Transmit Sanitized Image to Vision LLM (Simulate Safe Forwarding)", use_container_width=True, type="primary"):
+                    if st.button("🚀 Transmit Sanitized Image to Vision LLM (Simulate Safe Forwarding)", use_container_width=True, type="primary", key="img_mask_transmit_btn"):
                         st.success(
                             f"✅ Transmission Safe! Zero raw PII was exposed to external models. "
                             f"{regions_count} identity blocks, biometric portraits, and barcode/QR regions remained securely de-identified."

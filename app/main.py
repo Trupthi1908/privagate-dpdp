@@ -60,6 +60,7 @@ from app.database import (
     save_vault_mappings,
 )
 from app.detector import PIIDetectionEngine
+from app.image_sanitizer import mask_image_privacy
 from app.llm_router import LLMRouter
 from app.reinsert import SafeReinsertEngine
 from app.sentinel import APISentinel
@@ -141,6 +142,16 @@ class ParseDocumentResponse(BaseModel):
     character_count: int = Field(0, description="Extracted text character length")
     word_count: int = Field(0, description="Extracted text word count")
     extracted_text: str = Field(..., description="Extracted plain text content")
+
+
+class MaskImageResponse(BaseModel):
+    status: str = Field("success", description="Status of image masking")
+    mask_mode: str = Field("blur", description="Masking mode applied: blur, box, or both")
+    regions_masked_count: int = Field(0, description="Total number of sensitive PII regions masked")
+    dimensions: Dict[str, int] = Field(default_factory=dict, description="Image dimensions (width, height)")
+    security_status: str = Field("DPDP Compliant (De-Identified)", description="Security compliance status")
+    masked_image_base64: str = Field(..., description="Base64-encoded sanitized image bytes (PNG format)")
+    message: Optional[str] = Field("Image de-identified successfully", description="Status message")
 
 
 class SecureChatRequest(BaseModel):
@@ -237,7 +248,10 @@ async def parse_document(file: UploadFile = File(...)):
 
     fname = file.filename.lower()
     try:
-        content_bytes = await file.read()
+        try:
+            content_bytes = file.file.read()
+        except Exception:
+            content_bytes = await file.read()
         if not content_bytes:
             raise HTTPException(status_code=400, detail=f"Uploaded file '{file.filename}' is empty (0 bytes).")
 
@@ -281,6 +295,60 @@ async def parse_document(file: UploadFile = File(...)):
             status_code=500,
             detail=f"Failed to parse document '{file.filename}': {str(e)}",
         )
+
+
+@app.post("/api/v1/mask-image", response_model=MaskImageResponse)
+def mask_image_endpoint(
+    file: UploadFile = File(..., description="Uploaded ID card, Aadhaar card, or scanned form image"),
+    mask_mode: str = Query("blur", description="Masking mode: 'blur', 'box', or 'both'"),
+    blur_strength: int = Query(41, description="Gaussian blur kernel strength"),
+    add_security_badge: bool = Query(True, description="Append DPDP compliance security badge watermark"),
+):
+    """Visual privacy-masking and de-identification endpoint.
+
+    Processes uploaded ID cards, Aadhaar cards, and scanned forms using OpenCV
+    and Pillow to blur out sensitive regions (names, Aadhaar numbers, photos, QR codes)
+    with zero outbound raw image PII before LLM or vision model transmission.
+    """
+    if not file or not file.filename:
+        raise HTTPException(status_code=400, detail="No file uploaded or filename missing.")
+
+    fname = file.filename.lower()
+    valid_exts = (".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tiff")
+    if not any(fname.endswith(ext) for ext in valid_exts):
+        if not file.content_type or not file.content_type.startswith("image/"):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Unsupported file format for '{file.filename}'. Supported formats: PNG, JPG, JPEG.",
+            )
+
+    try:
+        contents = file.file.read()
+    except Exception:
+        contents = b""
+
+    if not contents:
+        raise HTTPException(status_code=400, detail="Uploaded image file is empty (0 bytes).")
+
+    result = mask_image_privacy(
+        image_bytes=contents,
+        mask_mode=mask_mode,
+        blur_strength=blur_strength,
+        add_security_badge=add_security_badge,
+    )
+
+    if result.get("status") == "error":
+        raise HTTPException(status_code=500, detail=result.get("error", "Image privacy masking failed."))
+
+    return MaskImageResponse(
+        status=result["status"],
+        mask_mode=result["mask_mode"],
+        regions_masked_count=result["regions_masked_count"],
+        dimensions=result["dimensions"],
+        security_status=result["security_status"],
+        masked_image_base64=result["masked_image_base64"],
+        message=f"DPDP De-Identification Complete: {result['regions_masked_count']} sensitive regions masked.",
+    )
 
 
 

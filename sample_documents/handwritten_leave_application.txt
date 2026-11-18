@@ -22,3 +22,4 @@ Patient Amit Patel is diagnosed with Acute Bronchospastic Bronchitis. Prescribed
 
 Consulting Doctor: Dr. Ramesh Sen, MD (Reg No: KMC-48291)
 Apollo Clinical Care, Indiranagar, Bengaluru.
+

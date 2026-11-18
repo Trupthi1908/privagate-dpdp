@@ -12,6 +12,17 @@ from typing import Any, Dict, List, Optional
 
 DB_FILE = Path(__file__).resolve().parent.parent / "audit_logs.db"
 
+__all__ = [
+    "get_db_connection",
+    "init_db",
+    "log_request",
+    "save_vault_mappings",
+    "erase_entity_records",
+    "get_dsr_logs",
+    "get_audit_logs",
+    "get_audit_stats",
+]
+
 
 def get_db_connection(db_path: Optional[Path] = None) -> sqlite3.Connection:
     target = db_path or DB_FILE

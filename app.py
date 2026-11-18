@@ -11,3 +11,4 @@ from pathlib import Path
 if __name__ == "__main__":
     ui_script = Path(__file__).parent / "ui.py"
     runpy.run_path(str(ui_script), run_name="__main__")
+

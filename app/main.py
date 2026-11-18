@@ -151,6 +151,9 @@ class MaskImageResponse(BaseModel):
     dimensions: Dict[str, int] = Field(default_factory=dict, description="Image dimensions (width, height)")
     security_status: str = Field("DPDP Compliant (De-Identified)", description="Security compliance status")
     masked_image_base64: str = Field(..., description="Base64-encoded sanitized image bytes (PNG format)")
+    profile_photo_masked: bool = Field(True, description="Whether the profile photograph was blurred")
+    aadhaar_number_masked: bool = Field(True, description="Whether 12-digit Aadhaar number was blurred")
+    static_headers_preserved: bool = Field(True, description="Whether static regulatory headers were excluded from blurring")
     message: Optional[str] = Field("Image de-identified successfully", description="Status message")
 
 
@@ -347,7 +350,10 @@ def mask_image_endpoint(
         dimensions=result["dimensions"],
         security_status=result["security_status"],
         masked_image_base64=result["masked_image_base64"],
-        message=f"DPDP De-Identification Complete: {result['regions_masked_count']} sensitive regions masked.",
+        profile_photo_masked=result.get("profile_photo_masked", True),
+        aadhaar_number_masked=result.get("aadhaar_number_masked", True),
+        static_headers_preserved=result.get("static_headers_preserved", True),
+        message=f"DPDP Targeted De-Identification Complete: {result['regions_masked_count']} sensitive regions masked (Photo & 12-digit Aadhaar blurred, Headers preserved).",
     )
 
 

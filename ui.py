@@ -2077,6 +2077,10 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                 w_str = f"{dims.get('width', 'N/A')}x{dims.get('height', 'N/A')}"
                 backend_badge = "⚡ FastAPI HTTP (/api/v1/mask-image)" if mask_res.get("backend_used") == "http" else "🛡️ Local Privacy Fallback Engine"
 
+                photo_status = "✅ Profile Photo Blurred" if mask_res.get("profile_photo_masked", True) else "Photo: N/A"
+                num_status = "✅ 12-Digit Aadhaar Masked" if mask_res.get("aadhaar_number_masked", True) else "Number: N/A"
+                header_status = "🏛️ Headers & Emblems Preserved" if mask_res.get("static_headers_preserved", True) else "Headers: Standard"
+
                 # Telemetry Bar
                 st.markdown(
                     f"""
@@ -2085,9 +2089,12 @@ if selected_view == "🛡️ 1. Core Hub (Document Intake & Chatbot)":
                         <span style="font-weight: 700; color: #0F172A; font-size: 0.95rem;">📄 Document:</span> <code style="color: #4F46E5; font-weight: 600;">{current_img_name}</code>
                         <span style="color: #64748B; margin-left: 8px;">({w_str} px)</span>
                       </div>
-                      <div style="display: flex; gap: 12px; align-items: center;">
+                      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
                         <span class="saas-pill-tag" style="background-color: #EEF2FF; color: #4F46E5;">{backend_badge}</span>
-                        <span class="saas-pill-tag" style="background-color: #ECFDF5; color: #065F46;">🛡️ {regions_count} SENSITIVE REGIONS SHIELDED</span>
+                        <span class="saas-pill-tag" style="background-color: #ECFDF5; color: #065F46;">🛡️ {regions_count} REGIONS SHIELDED</span>
+                        <span class="saas-pill-tag" style="background-color: #F0FDF4; color: #15803D;">{photo_status}</span>
+                        <span class="saas-pill-tag" style="background-color: #F0FDF4; color: #15803D;">{num_status}</span>
+                        <span class="saas-pill-tag" style="background-color: #EEF2FF; color: #4338CA;">{header_status}</span>
                       </div>
                     </div>
                     """,
